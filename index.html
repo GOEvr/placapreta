@@ -109,9 +109,13 @@
         }
 
         .logo-img {
-            height: 55px;
+            height: 80px;
             width: auto;
             transition: transform 0.3s ease;
+        }
+
+        .header.scrolled .logo-img {
+            height: 60px;
         }
 
         .logo-img:hover {
@@ -481,6 +485,7 @@
         }
 
         .btn-wa-fixed {
+            animation: pulse 2s infinite;
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -519,7 +524,8 @@
             .section-title { font-size: 2.2rem; }
             .container { padding: 0 20px; }
             .hero { padding: 100px 0 60px; }
-            .btn-wa-fixed { padding: 12px 20px; font-size: 0.85rem; }
+            .btn-wa-fixed {
+            animation: pulse 2s infinite; padding: 12px 20px; font-size: 0.85rem; }
             .logo-img { height: 40px; }
             .logo-text .main { font-size: 1.1rem; }
             .logo-text .sub { font-size: 0.55rem; }
@@ -536,14 +542,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+    @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
     </style>
 </head>
 <body>
+<div style="background:#D4AF37;color:#0F172A;text-align:center;padding:8px;font-weight:600;font-size:0.9rem;">
+⚡ Atendimento rápido • Certificação em até 24h • Fale agora no WhatsApp
+</div>
 
 <header class="header" id="header">
     <div class="container">
         <a href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-            <img src="imagens/1775179642539.png" alt="Clássicos VR Logo" class="logo-img">
+            <img loading="lazy" src="imagens/1775179642539.png" alt="Clássicos VR Logo" class="logo-img">
             <div class="logo-text">
                 <span class="main">CLÁSSICOS VR</span>
                 <span class="sub">CERTIFICAÇÃO PLACA PRETA</span>
@@ -573,9 +588,10 @@
                     <span class="benefit-item"><i class="fas fa-tag"></i> Melhor Preço do Mercado</span>
                 </div>
                 <a href="https://wa.me/55249999595228?text=Olá!%20Quero%20valorizar%20meu%20clássico%20e%20saber%20mais%20sobre%20a%20placa%20preta." class="cta-button" target="_blank"><i class="fab fa-whatsapp"></i> Quero valorizar meu clássico</a>
+                <div style="margin-top:20px;color:#D4AF37;font-weight:600;">+ de 500 veículos certificados ⭐⭐⭐⭐⭐</div>
             </div>
             <div class="hero-image">
-                <img src="imagens/hero-car.jpg" alt="Carro clássico com placa preta" onerror="this.src='https://placehold.co/600x500/1E293B/D4AF37?text=Clássico+VR'">
+                <img loading="lazy" src="imagens/hero-car.jpg" alt="Carro clássico com placa preta" onerror="this.src='https://placehold.co/600x500/1E293B/D4AF37?text=Clássico+VR'">
             </div>
         </div>
     </section>
@@ -614,12 +630,12 @@
             <h2 class="section-title fade-up">Galeria de Clássicos Certificados</h2>
             <p class="section-sub fade-up">Cada veículo conta uma história, cada Placa Preta celebra um legado</p>
             <div class="gallery">
-                <div class="gallery-item fade-up"><img src="imagens/fusca.jpg" alt="Fusca 1968" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Fusca+1968'"><p>Volkswagen Fusca</p></div>
-                <div class="gallery-item fade-up"><img src="imagens/opala.jpg" alt="Opala 1978" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Opala+1978'"><p>Chevrolet Opala</p></div>
-                <div class="gallery-item fade-up"><img src="imagens/maverick.jpg" alt="Maverick V8" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Maverick+V8'"><p>Ford Maverick</p></div>
-                <div class="gallery-item fade-up"><img src="imagens/puma.jpg" alt="Puma GTB" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Puma+GTB'"><p>Puma GTB</p></div>
-                <div class="gallery-item fade-up"><img src="imagens/passat.jpg" alt="Passat TS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Passat+TS'"><p>Volkswagen Passat</p></div>
-                <div class="gallery-item fade-up"><img src="imagens/caravan.jpg" alt="Caravan SS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Caravan+SS'"><p>Chevrolet Caravan SS</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/fusca.jpg" alt="Fusca 1968" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Fusca+1968'"><p>Volkswagen Fusca</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/opala.jpg" alt="Opala 1978" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Opala+1978'"><p>Chevrolet Opala</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/maverick.jpg" alt="Maverick V8" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Maverick+V8'"><p>Ford Maverick</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/puma.jpg" alt="Puma GTB" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Puma+GTB'"><p>Puma GTB</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/passat.jpg" alt="Passat TS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Passat+TS'"><p>Volkswagen Passat</p></div>
+                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/caravan.jpg" alt="Caravan SS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Caravan+SS'"><p>Chevrolet Caravan SS</p></div>
             </div>
         </div>
     </section>
@@ -655,6 +671,12 @@
         </div>
     </section>
 
+    <section style="text-align:center;padding:60px;background:#0F172A;color:#fff;">
+    <h2 style="font-size:2rem;margin-bottom:20px;">Seu clássico pode valer muito mais hoje</h2>
+    <p style="margin-bottom:30px;color:#94A3B8;">Fale agora e descubra se pode receber a Placa Preta</p>
+    <a href="https://wa.me/55249999595228" class="cta-button"><i class="fab fa-whatsapp"></i> Falar com especialista</a>
+</section>
+
     <!-- FAQ -->
     <section class="section section-alt">
         <div class="container">
@@ -671,7 +693,7 @@
 
 <footer>
     <div class="container">
-        <img src="imagens/1775179642539.png" alt="Clássicos VR Logo" style="height: 50px; width: auto; margin-bottom: 20px;">
+        <img loading="lazy" src="imagens/1775179642539.png" alt="Clássicos VR Logo" style="height: 50px; width: auto; margin-bottom: 20px;">
         <p style="margin-top: 16px;">Certificação oficial de veículos antigos – Placa Preta</p>
         <div class="footer-wa" style="margin: 24px 0;">
             <a href="https://wa.me/55249999595228?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20certificação%20Placa%20Preta." target="_blank" style="background: linear-gradient(135deg, #25D366, #128C7E); padding: 12px 32px; border-radius: 60px; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;"><i class="fab fa-whatsapp"></i> (24) 99959-5228</a>
