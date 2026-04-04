@@ -8,13 +8,18 @@
     <meta name="keywords" content="placa preta, certificação detran, veículos antigos, clássicos, laudo originalidade, valorização carros antigos, placa preta detran, certificado originalidade">
     <meta name="author" content="Clássicos VR - Bruno Lugão">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="google-site-verification" content="seu-codigo-aqui">
     <link rel="canonical" href="https://www.classicosvr.com.br">
     <meta property="og:title" content="Clássicos VR - Certificação Placa Preta Oficial DETRAN">
     <meta property="og:description" content="Transforme seu clássico em patrimônio oficial com a placa preta. Atendimento ágil e especializado em todo Brasil. + de 500 clientes satisfeitos.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.classicosvr.com.br">
     <meta property="og:image" content="imagens/1775179642539.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clássicos VR - Certificação Placa Preta">
+    <meta name="twitter:description" content="Transforme seu clássico em patrimônio oficial com a placa preta.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -68,6 +73,12 @@
             }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         h1, h2, h3, .hero-title, .section-title, .card-title {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
@@ -80,13 +91,25 @@
             padding: 0 32px;
         }
 
-        /* Header premium modernizado */
+        /* Top bar */
+        .top-bar {
+            background: #D4AF37;
+            color: #0F172A;
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Header premium */
         .header {
             background: rgba(15, 23, 42, 0.92);
             backdrop-filter: blur(12px);
             color: #F1F5F9;
             padding: 18px 0;
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -485,7 +508,6 @@
         }
 
         .btn-wa-fixed {
-            animation: pulse 2s infinite;
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -502,10 +524,12 @@
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
             font-size: 1rem;
+            animation: pulse 2s infinite;
         }
 
         .btn-wa-fixed:hover {
             transform: scale(1.05);
+            animation: none;
             box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
         }
 
@@ -517,6 +541,30 @@
             color: #D4AF37;
         }
 
+        .rating {
+            margin-top: 20px;
+            color: #D4AF37;
+            font-weight: 600;
+        }
+
+        /* CTA final */
+        .final-cta {
+            text-align: center;
+            padding: 80px 20px;
+            background: #0F172A;
+            color: #fff;
+        }
+
+        .final-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            margin-bottom: 30px;
+            color: #94A3B8;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem; }
@@ -524,11 +572,11 @@
             .section-title { font-size: 2.2rem; }
             .container { padding: 0 20px; }
             .hero { padding: 100px 0 60px; }
-            .btn-wa-fixed {
-            animation: pulse 2s infinite; padding: 12px 20px; font-size: 0.85rem; }
-            .logo-img { height: 40px; }
-            .logo-text .main { font-size: 1.1rem; }
-            .logo-text .sub { font-size: 0.55rem; }
+            .btn-wa-fixed { padding: 12px 20px; font-size: 0.85rem; }
+            .logo-img { height: 45px; }
+            .logo-text .main { font-size: 1rem; }
+            .logo-text .sub { font-size: 0.5rem; }
+            .top-bar { font-size: 0.75rem; }
         }
 
         /* Scroll reveal */
@@ -542,17 +590,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-    @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
     </style>
 </head>
 <body>
-<div style="background:#D4AF37;color:#0F172A;text-align:center;padding:8px;font-weight:600;font-size:0.9rem;">
-⚡ Atendimento rápido • Certificação em até 24h • Fale agora no WhatsApp
+
+<!-- Top Bar -->
+<div class="top-bar">
+    ⚡ Atendimento rápido • Certificação em até 24h • Fale agora no WhatsApp
 </div>
 
 <header class="header" id="header">
@@ -588,7 +632,7 @@
                     <span class="benefit-item"><i class="fas fa-tag"></i> Melhor Preço do Mercado</span>
                 </div>
                 <a href="https://wa.me/55249999595228?text=Olá!%20Quero%20valorizar%20meu%20clássico%20e%20saber%20mais%20sobre%20a%20placa%20preta." class="cta-button" target="_blank"><i class="fab fa-whatsapp"></i> Quero valorizar meu clássico</a>
-                <div style="margin-top:20px;color:#D4AF37;font-weight:600;">+ de 500 veículos certificados ⭐⭐⭐⭐⭐</div>
+                <div class="rating">⭐ ⭐ ⭐ ⭐ ⭐ + de 500 veículos certificados</div>
             </div>
             <div class="hero-image">
                 <img loading="lazy" src="imagens/hero-car.jpg" alt="Carro clássico com placa preta" onerror="this.src='https://placehold.co/600x500/1E293B/D4AF37?text=Clássico+VR'">
@@ -671,11 +715,14 @@
         </div>
     </section>
 
-    <section style="text-align:center;padding:60px;background:#0F172A;color:#fff;">
-    <h2 style="font-size:2rem;margin-bottom:20px;">Seu clássico pode valer muito mais hoje</h2>
-    <p style="margin-bottom:30px;color:#94A3B8;">Fale agora e descubra se pode receber a Placa Preta</p>
-    <a href="https://wa.me/55249999595228" class="cta-button"><i class="fab fa-whatsapp"></i> Falar com especialista</a>
-</section>
+    <!-- CTA Final -->
+    <div class="final-cta fade-up">
+        <div class="container">
+            <h2>Seu clássico pode valer muito mais hoje</h2>
+            <p>Fale agora e descubra se pode receber a Placa Preta</p>
+            <a href="https://wa.me/55249999595228?text=Olá!%20Quero%20saber%20se%20meu%20veículo%20pode%20receber%20a%20Placa%20Preta" class="cta-button"><i class="fab fa-whatsapp"></i> Falar com especialista</a>
+        </div>
+    </div>
 
     <!-- FAQ -->
     <section class="section section-alt">
@@ -703,7 +750,7 @@
     </div>
 </footer>
 
-<a href="https://wa.me/55249999595228?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20placa%20preta." class="btn-wa-fixed" target="_blank">
+<a href="https://wa.me/55249999595228?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20placa%20preta." class="btn-wa-fixed" target="_blank" aria-label="Fale conosco no WhatsApp">
     <i class="fab fa-whatsapp fa-lg"></i> (24) 99959-5228
 </a>
 
