@@ -783,132 +783,470 @@ footer .container {
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - MOBILE OTIMIZADO
    ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero {
+        padding: 130px 0 80px;
+    }
+}
+
+/* Mobile Grande (768px) */
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
     }
     
-    .hero-title {
-        font-size: 2.8rem;
-    }
-    
-    .hero {
-        padding: 120px 0 60px;
-        background-attachment: scroll;
-    }
-    
-    .hero .container {
-        min-height: 70vh;
-    }
-    
-    .hero-content {
-        padding: 0 20px;
-    }
-    
-    .section {
-        padding: 60px 0;
-    }
-    
-    .section-title {
-        font-size: 2.2rem;
-    }
-    
-    .hero-description {
-        font-size: 1rem;
-    }
-    
-    .cta-button {
-        padding: 14px 32px;
-        font-size: 1rem;
-    }
-    
-    .btn-wa-fixed {
-        padding: 12px 20px;
-        font-size: 0.85rem;
-    }
-    
-    .logo-img {
-        height: 55px;
-    }
-    
-    .logo-text .main {
-        font-size: 1.5rem;
-    }
-    
-    .logo-text .sub {
-        font-size: 0.65rem;
-        letter-spacing: 2px;
-    }
-    
-    .logo-container {
+    /* ===== HEADER MOBILE ===== */
+    .header .container {
+        flex-direction: column;
         gap: 12px;
     }
     
+    .logo-container {
+        gap: 10px;
+    }
+    
+    .logo-img {
+        height: 50px;
+    }
+    
+    .header.scrolled .logo-img {
+        height: 45px;
+    }
+    
+    .logo-text .main {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+    
+    .logo-text .sub {
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .header-contact {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .contact-info span {
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
     .header {
-        padding: 18px 0;
+        padding: 15px 0;
     }
     
     .header.scrolled {
-        padding: 12px 0;
+        padding: 10px 0;
     }
     
+    /* ===== TOP BAR MOBILE ===== */
     .top-bar {
-        font-size: 0.7rem;
-        padding: 8px;
+        font-size: 0.65rem;
+        padding: 8px 12px;
+        line-height: 1.4;
     }
     
-    .card h3 {
-        font-size: 1.4rem;
-    }
-    
-    .step-number {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-    
-    .final-cta {
+    /* ===== HERO MOBILE ===== */
+    .hero {
+        padding: 100px 0 50px;
         background-attachment: scroll;
-        padding: 60px 20px;
+        min-height: auto;
     }
     
-    .final-cta h2 {
-        font-size: 1.8rem;
+    .hero .container {
+        min-height: auto;
     }
     
-    .about-features {
-        gap: 25px;
-        flex-direction: column;
-        align-items: center;
+    .hero-content {
+        padding: 0;
     }
     
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
-    }
-}
-
-@media (max-width: 480px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        padding: 0 5px;
+    }
+    
+    .hero-badge {
+        padding: 6px 18px;
+        font-size: 0.75rem;
+        margin-bottom: 20px;
     }
     
     .benefits-row {
         gap: 10px;
+        margin: 25px 0;
+        justify-content: center;
     }
     
     .benefit-item {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 6px 14px;
+    }
+    
+    .rating {
+        font-size: 0.85rem;
+        margin-top: 20px;
+    }
+    
+    /* ===== BOTÕES MOBILE ===== */
+    .cta-button {
+        padding: 14px 28px;
+        font-size: 1rem;
+        gap: 8px;
+    }
+    
+    .btn-wa-fixed {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+    
+    /* ===== SECTIONS MOBILE ===== */
+    .section {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .section-sub {
+        font-size: 0.95rem;
+        margin-bottom: 35px;
+        padding: 0 10px;
+    }
+    
+    /* ===== CARDS MOBILE ===== */
+    .cards-grid {
+        gap: 20px;
     }
     
     .card {
         padding: 30px 20px;
     }
     
+    .card i {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+    }
+    
+    .card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+    
+    .card p {
+        font-size: 0.9rem;
+    }
+    
+    /* ===== STEPS MOBILE ===== */
+    .steps {
+        gap: 20px;
+        flex-direction: column;
+    }
+    
     .step {
-        padding: 25px 20px;
+        min-width: auto;
+        padding: 30px 20px;
+    }
+    
+    .step-number {
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+        margin-bottom: 18px;
+    }
+    
+    .step h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .step p {
+        font-size: 0.9rem;
+    }
+    
+    /* ===== GALERIA MOBILE ===== */
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .gallery-item p {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .gallery-item::after {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    /* ===== TESTEMUNHOS MOBILE ===== */
+    .testimonials {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .testimonial {
+        padding: 25px;
+        max-width: 100%;
+    }
+    
+    .testimonial i {
+        font-size: 1.5rem;
+    }
+    
+    .testimonial p {
+        font-size: 0.9rem;
+    }
+    
+    /* ===== SOBRE MOBILE ===== */
+    .about-content p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .about-features {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        margin: 35px 0;
+    }
+    
+    .about-features div {
+        font-size: 0.9rem;
+    }
+    
+    .about-whatsapp {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+    
+    /* ===== CTA FINAL MOBILE ===== */
+    .final-cta {
+        padding: 50px 20px;
+        background-attachment: scroll;
+    }
+    
+    .final-cta h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    .final-cta p {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+    
+    /* ===== FAQ MOBILE ===== */
+    .faq-grid {
+        gap: 12px;
+    }
+    
+    .faq-item {
+        padding: 16px 20px;
+    }
+    
+    .faq-question {
+        font-size: 1rem;
+    }
+    
+    .faq-answer {
+        font-size: 0.85rem;
+    }
+    
+    /* ===== FOOTER MOBILE ===== */
+    footer {
+        padding: 40px 0 25px;
+    }
+    
+    .footer-logo {
+        height: 45px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-wa {
+        margin: 20px 0;
+    }
+    
+    .footer-wa a {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+    
+    .copyright, .credits {
+        font-size: 0.7rem;
+    }
+}
+
+/* Mobile Pequeno (480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+    }
+    
+    .section-sub {
+        font-size: 0.85rem;
+    }
+    
+    .benefit-item {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .final-cta .cta-button {
+        width: auto;
+        min-width: 80%;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .gallery-item p {
+        padding: 10px;
+        font-size: 0.75rem;
+    }
+    
+    .card {
+        padding: 25px 16px;
+    }
+    
+    .card i {
+        font-size: 2rem;
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .card p {
+        font-size: 0.85rem;
+    }
+    
+    .step {
+        padding: 20px 16px;
+    }
+    
+    .step-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .step h3 {
+        font-size: 1.1rem;
+    }
+    
+    .step p {
+        font-size: 0.85rem;
+    }
+    
+    .final-cta h2 {
+        font-size: 1.4rem;
+    }
+    
+    .btn-wa-fixed {
+        padding: 10px 16px;
+        font-size: 0.7rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header-contact {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .contact-info {
+        justify-content: center;
+    }
+}
+
+/* Mobile muito pequeno (375px) */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .final-cta .cta-button {
+        min-width: 90%;
+        padding: 12px 20px;
+    }
+}
+
+/* Ajustes para telas com notch (iPhone) */
+@supports (padding: max(0px)) {
+    .header {
+        padding-left: max(25px, env(safe-area-inset-left));
+        padding-right: max(25px, env(safe-area-inset-right));
+    }
+    
+    .btn-wa-fixed {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(20px, env(safe-area-inset-right));
     }
 }
