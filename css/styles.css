@@ -83,13 +83,13 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HEADER - LOGO AUMENTADO
+   HEADER - LOGO AUMENTADO 20%
    ============================================ */
 .header {
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(12px);
     color: var(--text-light);
-    padding: 25px 0;
+    padding: 30px 0;
     position: sticky;
     top: 0;
     width: 100%;
@@ -99,7 +99,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .header.scrolled {
-    padding: 18px 0;
+    padding: 22px 0;
     background: rgba(15, 23, 42, 0.98);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
@@ -115,18 +115,18 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     text-decoration: none;
 }
 
 .logo-img {
-    height: 90px;
+    height: 108px;
     width: auto;
     transition: transform 0.3s ease;
 }
 
 .header.scrolled .logo-img {
-    height: 70px;
+    height: 84px;
 }
 
 .logo-img:hover {
@@ -139,7 +139,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .logo-text .main {
-    font-size: 2.3rem;
+    font-size: 2.8rem;
     font-weight: 800;
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
@@ -147,7 +147,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .logo-text .sub {
-    font-size: 0.85rem;
+    font-size: 1.02rem;
     color: var(--gold);
     letter-spacing: 3px;
     font-weight: 600;
@@ -814,24 +814,24 @@ footer .container {
     }
     
     .logo-container {
-        gap: 10px;
+        gap: 14px;
     }
     
     .logo-img {
-        height: 50px;
+        height: 60px;
     }
     
     .header.scrolled .logo-img {
-        height: 45px;
+        height: 54px;
     }
     
     .logo-text .main {
-        font-size: 1.3rem;
+        font-size: 1.56rem;
         letter-spacing: 1px;
     }
     
     .logo-text .sub {
-        font-size: 0.6rem;
+        font-size: 0.72rem;
         letter-spacing: 1.5px;
     }
     
@@ -851,11 +851,11 @@ footer .container {
     }
     
     .header {
-        padding: 15px 0;
+        padding: 20px 0;
     }
     
     .header.scrolled {
-        padding: 10px 0;
+        padding: 14px 0;
     }
     
     /* ===== TOP BAR MOBILE ===== */
@@ -1241,8 +1241,8 @@ footer .container {
 /* Ajustes para telas com notch (iPhone) */
 @supports (padding: max(0px)) {
     .header {
-        padding-left: max(25px, env(safe-area-inset-left));
-        padding-right: max(25px, env(safe-area-inset-right));
+        padding-left: max(30px, env(safe-area-inset-left));
+        padding-right: max(30px, env(safe-area-inset-right));
     }
     
     .btn-wa-fixed {
