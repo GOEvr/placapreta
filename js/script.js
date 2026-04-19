@@ -60,7 +60,7 @@
     }
 
     // ============================================
-    // CARROSSEL (Swiper)
+    // CARROSSEL (Swiper) - CORRIGIDO
     // ============================================
     if (typeof Swiper !== 'undefined') {
         const gallerySwiper = new Swiper('.gallery-swiper', {
@@ -92,6 +92,8 @@
             effect: 'slide',
             speed: 800,
         });
+    } else {
+        console.warn('Swiper não foi carregado. Verifique o link do CDN.');
     }
 
     // ============================================
