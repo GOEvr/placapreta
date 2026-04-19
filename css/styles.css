@@ -215,6 +215,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     border: none;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    animation: pulse 2s infinite;
 }
 
 .cta-button:hover {
@@ -222,6 +223,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
     color: var(--primary-dark);
+    animation: none;
 }
 
 .btn-wa-fixed {
@@ -251,7 +253,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HERO COM IMAGEM DE FUNDO E CENTRALIZADO
+   HERO COM IMAGEM DE FUNDO (sem fixed para performance)
    ============================================ */
 .hero {
     position: relative;
@@ -262,7 +264,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
                 url('../imagens/hero-bg-car.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     overflow: hidden;
     padding: 140px 0 100px;
 }
@@ -464,55 +465,29 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   GALERIA
+   GALERIA EM CARROSSEL (Swiper)
    ============================================ */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 28px;
+.gallery-swiper {
+    width: 100%;
+    padding: 20px 0 50px;
 }
 
-.gallery-item {
+.gallery-card {
     background: #fff;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
     transition: all 0.4s ease;
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-.gallery-item::after {
-    content: '🔍';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: rgba(212, 175, 55, 0.9);
-    color: #0F172A;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    opacity: 0;
-}
-
-.gallery-item:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-}
-
-.gallery-item:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.2);
     border-color: var(--gold);
 }
 
-.gallery-item img {
+.gallery-card img {
     width: 100%;
     aspect-ratio: 4/3;
     object-fit: cover;
@@ -520,15 +495,59 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     transition: transform 0.5s ease;
 }
 
-.gallery-item:hover img {
+.gallery-card:hover img {
     transform: scale(1.05);
 }
 
-.gallery-item p {
-    padding: 18px;
+.gallery-card-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.gallery-card-info h4 {
+    font-size: 1.2rem;
     font-weight: 700;
-    font-size: 1rem;
     color: var(--primary-dark);
+    margin-bottom: 5px;
+}
+
+.gallery-card-info p {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Swiper customização */
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--gold);
+    background: rgba(15, 23, 42, 0.8);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background: var(--gold);
+    color: var(--primary-dark);
+}
+
+.swiper-pagination-bullet {
+    background: var(--gold);
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--gold);
+    opacity: 1;
 }
 
 /* ============================================
@@ -613,7 +632,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   CTA FINAL COM IMAGEM DE FUNDO
+   CTA FINAL COM IMAGEM DE FUNDO (sem fixed)
    ============================================ */
 .final-cta {
     text-align: center;
@@ -622,7 +641,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
                 url('../imagens/cta-bg-car.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     color: #fff;
     position: relative;
 }
@@ -685,6 +703,14 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     justify-content: space-between;
     align-items: center;
     color: var(--primary-dark);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
 }
 
 .faq-answer {
@@ -814,24 +840,24 @@ footer .container {
     }
     
     .logo-container {
-        gap: 14px;
+        gap: 8px;
     }
     
     .logo-img {
-        height: 60px;
+        height: 45px;
     }
     
     .header.scrolled .logo-img {
-        height: 54px;
+        height: 40px;
     }
     
     .logo-text .main {
-        font-size: 1.56rem;
+        font-size: 1.2rem;
         letter-spacing: 1px;
     }
     
     .logo-text .sub {
-        font-size: 0.72rem;
+        font-size: 0.55rem;
         letter-spacing: 1.5px;
     }
     
@@ -851,11 +877,11 @@ footer .container {
     }
     
     .header {
-        padding: 20px 0;
+        padding: 12px 0;
     }
     
     .header.scrolled {
-        padding: 14px 0;
+        padding: 8px 0;
     }
     
     /* ===== TOP BAR MOBILE ===== */
@@ -868,7 +894,6 @@ footer .container {
     /* ===== HERO MOBILE ===== */
     .hero {
         padding: 100px 0 50px;
-        background-attachment: scroll;
         min-height: auto;
     }
     
@@ -995,21 +1020,24 @@ footer .container {
         font-size: 0.9rem;
     }
     
-    /* ===== GALERIA MOBILE ===== */
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    /* ===== CARROSSEL MOBILE ===== */
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 35px;
+        height: 35px;
     }
     
-    .gallery-item p {
-        padding: 12px;
-        font-size: 0.85rem;
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 1rem;
     }
     
-    .gallery-item::after {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .gallery-card-info h4 {
+        font-size: 1rem;
+    }
+    
+    .gallery-card-info p {
+        font-size: 0.75rem;
     }
     
     /* ===== TESTEMUNHOS MOBILE ===== */
@@ -1057,7 +1085,6 @@ footer .container {
     /* ===== CTA FINAL MOBILE ===== */
     .final-cta {
         padding: 50px 20px;
-        background-attachment: scroll;
     }
     
     .final-cta h2 {
@@ -1151,16 +1178,6 @@ footer .container {
         min-width: 80%;
     }
     
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .gallery-item p {
-        padding: 10px;
-        font-size: 0.75rem;
-    }
-    
     .card {
         padding: 25px 16px;
     }
@@ -1225,11 +1242,6 @@ footer .container {
 @media (max-width: 375px) {
     .hero-title {
         font-size: 1.6rem;
-    }
-    
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
     }
     
     .final-cta .cta-button {
