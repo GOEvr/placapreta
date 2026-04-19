@@ -29,6 +29,9 @@
     <!-- CSS Externo -->
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- Swiper CSS para o carrossel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -108,18 +111,74 @@
         </div>
     </section>
 
-    <!-- Galeria -->
+    <!-- Galeria em Carrossel -->
     <section class="section">
         <div class="container">
             <h2 class="section-title fade-up">Galeria de Clássicos Certificados</h2>
             <p class="section-sub fade-up">Cada veículo conta uma história, cada Placa Preta celebra um legado</p>
-            <div class="gallery">
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/fusca.jpg" alt="Fusca 1968" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Fusca'"><p>Volkswagen Fusca</p></div>
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/opala.jpg" alt="Opala 1978" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Opala'"><p>Chevrolet Opala</p></div>
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/maverick.jpg" alt="Maverick V8" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Maverick'"><p>Ford Maverick</p></div>
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/puma.jpg" alt="Puma GTB" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Puma'"><p>Puma GTB</p></div>
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/passat.jpg" alt="Passat TS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Passat'"><p>Volkswagen Passat</p></div>
-                <div class="gallery-item fade-up"><img loading="lazy" src="imagens/caravan.jpg" alt="Caravan SS" onerror="this.src='https://placehold.co/300x220/334155/D4AF37?text=Caravan'"><p>Chevrolet Caravan SS</p></div>
+            
+            <!-- Swiper Carrossel -->
+            <div class="swiper gallery-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/fusca.jpg" alt="Fusca 1968" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Fusca'">
+                            <div class="gallery-card-info">
+                                <h4>Volkswagen Fusca</h4>
+                                <p>1968 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/opala.jpg" alt="Opala 1978" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Opala'">
+                            <div class="gallery-card-info">
+                                <h4>Chevrolet Opala</h4>
+                                <p>1978 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/maverick.jpg" alt="Maverick V8" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Maverick'">
+                            <div class="gallery-card-info">
+                                <h4>Ford Maverick</h4>
+                                <p>1975 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/puma.jpg" alt="Puma GTB" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Puma'">
+                            <div class="gallery-card-info">
+                                <h4>Puma GTB</h4>
+                                <p>1977 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/passat.jpg" alt="Passat TS" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Passat'">
+                            <div class="gallery-card-info">
+                                <h4>Volkswagen Passat</h4>
+                                <p>1976 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-card">
+                            <img loading="lazy" src="imagens/caravan.jpg" alt="Caravan SS" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Caravan'">
+                            <div class="gallery-card-info">
+                                <h4>Chevrolet Caravan SS</h4>
+                                <p>1979 • Placa Preta</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navegação -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
@@ -194,6 +253,9 @@
 <a href="https://wa.me/5524999595228?text=Olá! Gostaria de saber mais sobre a placa preta." class="btn-wa-fixed" target="_blank" aria-label="Fale conosco no WhatsApp">
     <i class="fab fa-whatsapp fa-lg"></i> (24) 99959-5228
 </a>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- JavaScript Externo -->
 <script src="js/script.js" defer></script>
