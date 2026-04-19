@@ -253,11 +253,11 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HERO COM IMAGEM DE FUNDO (sem fixed para performance)
+   HERO COM IMAGEM DE FUNDO (espaçamento corrigido)
    ============================================ */
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.9) 100%), 
@@ -265,7 +265,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 140px 0 100px;
+    padding: 80px 0 60px;
 }
 
 .hero::before {
@@ -283,7 +283,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 60vh;
     position: relative;
     z-index: 2;
 }
@@ -632,7 +632,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   CTA FINAL COM IMAGEM DE FUNDO (sem fixed)
+   CTA FINAL COM IMAGEM DE FUNDO
    ============================================ */
 .final-cta {
     text-align: center;
@@ -823,7 +823,7 @@ footer .container {
     }
     
     .hero {
-        padding: 130px 0 80px;
+        padding: 70px 0 50px;
     }
 }
 
@@ -893,7 +893,7 @@ footer .container {
     
     /* ===== HERO MOBILE ===== */
     .hero {
-        padding: 100px 0 50px;
+        padding: 60px 0 40px;
         min-height: auto;
     }
     
