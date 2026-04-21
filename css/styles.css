@@ -69,7 +69,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   TOP BAR
+   TOP BAR (Ajustada para não cobrir o header)
    ============================================ */
 .top-bar {
     background: var(--gold);
@@ -79,7 +79,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     font-weight: 700;
     font-size: 0.95rem;
     position: relative;
-    z-index: 1001;
+    z-index: 999;
     transition: transform 0.3s ease;
 }
 
@@ -105,7 +105,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-/* Efeito quando rola a página */
+/* Efeito quando rola a página - a top-bar sobe */
 body.scrolled .top-bar {
     transform: translateY(-100%);
 }
