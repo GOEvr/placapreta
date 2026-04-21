@@ -7,28 +7,56 @@
     'use strict';
 
     // ============================================
-    // HEADER SCROLL (otimizado com requestAnimationFrame)
+    // HEADER SCROLL (CORRIGIDO - SEM TREMEDEIRA)
     // ============================================
-    const header = document.getElementById('header');
-    let ticking = false;
+    const header = document.querySelector('.header');
+    const topBar = document.querySelector('.top-bar');
+    let headerPlaceholder = document.querySelector('.header-placeholder');
 
-    function updateHeader() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        ticking = false;
+    // Cria o elemento placeholder se ele não existir
+    if (!headerPlaceholder && header) {
+        headerPlaceholder = document.createElement('div');
+        headerPlaceholder.className = 'header-placeholder';
+        header.parentNode.insertBefore(headerPlaceholder, header);
     }
 
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateHeader);
-                ticking = true;
+    function updateHeaderScroll() {
+        if (!header) return;
+
+        const scrollY = window.scrollY;
+        const headerHeight = header.offsetHeight;
+        
+        // Atualiza a altura do placeholder para evitar o "pulo" do conteúdo
+        if (headerPlaceholder) {
+            if (scrollY > 50) {
+                headerPlaceholder.style.height = `${headerHeight}px`;
+            } else {
+                headerPlaceholder.style.height = '0';
             }
-        }, { passive: true });
+        }
+
+        // Adiciona a classe 'scrolled' ao body quando rolar
+        if (scrollY > 50) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
     }
+
+    // Usa requestAnimationFrame para suavizar
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateHeaderScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Executa uma vez ao carregar para definir o estado inicial
+    updateHeaderScroll();
 
     // ============================================
     // SCROLL REVEAL (configurável)
@@ -60,7 +88,7 @@
     }
 
     // ============================================
-    // CARROSSEL (Swiper) - CORRIGIDO
+    // CARROSSEL (Swiper)
     // ============================================
     if (typeof Swiper !== 'undefined') {
         const gallerySwiper = new Swiper('.gallery-swiper', {
