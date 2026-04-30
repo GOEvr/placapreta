@@ -30,7 +30,6 @@ body {
     color: var(--text-dark);
     scroll-behavior: smooth;
     overflow-x: hidden;
-    overflow-anchor: none; /* CORREÇÃO: previne tremor no scroll */
 }
 
 h1, h2, h3, .hero-title, .section-title, .card-title {
@@ -75,7 +74,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   TOP BAR - FIXA NO TOPO
+   TOP BAR - CORRIGIDA (altura fixa)
    ============================================ */
 .top-bar {
     background: var(--gold);
@@ -87,35 +86,37 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     position: relative;
     z-index: 1001;
     width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
 
 /* ============================================
-   HEADER - SEM TREPIDAÇÃO
+   HEADER - CORRIGIDO (altura fixa + sem reflow)
    ============================================ */
 .header {
     background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
     color: var(--text-light);
-    padding: 30px 0;
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 26px 0;
+    height: 120px;
     position: sticky;
     top: 0;
-    /* CORREÇÕES CRÍTICAS PARA EVITAR TREPIDAÇÃO */
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     transform: translateZ(0);
     will-change: transform;
     backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .header.scrolled {
-    padding: 22px 0;
+    padding: 26px 0;
     background: rgba(15, 23, 42, 0.98);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    animation: slideDown 0.3s ease forwards;
 }
 
 .header .container {
@@ -133,10 +134,13 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
+/* LOGO COM TRANSFORM - CORRIGIDO */
 .logo-img {
     height: 108px;
     width: auto;
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transform-origin: left center;
 }
 
 .logo-img:hover {
@@ -144,7 +148,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .header.scrolled .logo-img {
-    height: 84px;
+    transform: scale(0.78);
 }
 
 .logo-text {
@@ -240,16 +244,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     animation: none;
 }
 
-/* PREVINE TREPIDAÇÃO NO SCROLL - todos elementos com movimento */
-.header,
-.top-bar,
-.hero,
-.card,
-.step {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
 .btn-wa-fixed {
     position: fixed;
     bottom: 30px;
@@ -276,6 +270,14 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
 }
 
+/* MOBILE: remove blur para melhor performance - NOVA REGRA */
+@media (max-width: 768px) {
+    .header {
+        backdrop-filter: none;
+        background: rgba(15, 23, 42, 0.98);
+    }
+}
+
 /* ============================================
    HERO COM IMAGEM DE FUNDO
    ============================================ */
@@ -290,8 +292,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     background-position: center;
     overflow: hidden;
     padding: 80px 0 60px;
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
 .hero::before {
@@ -873,6 +873,7 @@ footer .container {
     }
     
     .header.scrolled .logo-img {
+        transform: scale(1);
         height: 40px;
     }
     
@@ -903,6 +904,8 @@ footer .container {
     
     .header {
         padding: 12px 0;
+        height: auto;
+        min-height: 90px;
     }
     
     .header.scrolled {
@@ -913,6 +916,8 @@ footer .container {
         font-size: 0.65rem;
         padding: 8px 12px;
         line-height: 1.4;
+        height: auto;
+        min-height: 44px;
     }
     
     .hero {
