@@ -1,75 +1,49 @@
 /**
  * Clássicos VR - Script Premium
- * Header inteligente com scroll suave + top-bar oculta
+ * Scroll com PONTO ÚNICO DE CONTROLE - SEM TREPIDAÇÃO
  */
 
 (function() {
     'use strict';
 
     // ============================================
-    // TOP-BAR: SOME AO ROLAR PARA BAIXO
+    // SCROLL COM PONTO ÚNICO DE CONTROLE
     // ============================================
     const topBar = document.querySelector('.top-bar');
-    let lastScroll = 0;
-    let scrollTicking = false;
-
-    function updateTopBar() {
-        if (!topBar) return;
-        
-        const currentScroll = window.scrollY;
-
-        if (currentScroll > 50 && currentScroll > lastScroll) {
-            // ROLANDO PARA BAIXO → esconde top-bar
-            topBar.classList.add('hide');
-        } else if (currentScroll <= 50 || currentScroll < lastScroll) {
-            // ROLANDO PARA CIMA OU NO TOPO → mostra top-bar
-            topBar.classList.remove('hide');
-        }
-
-        lastScroll = currentScroll;
-        scrollTicking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-            requestAnimationFrame(updateTopBar);
-            scrollTicking = true;
-        }
-    }, { passive: true });
-
-    // ============================================
-    // HEADER PREMIUM - COMPACTA AO ROLAR
-    // ============================================
     const header = document.getElementById('header');
-    let headerTicking = false;
 
-    function updateHeader() {
-        if (!header) return;
-        
+    let ticking = false;
+    const TRIGGER = 80; // PONTO ÚNICO - resolve o conflito entre 50 e 80!
+
+    function handleScroll() {
         const currentScroll = window.scrollY;
 
-        if (currentScroll > 80) {
-            header.classList.add('scrolled');
+        // 🔒 PONTO ÚNICO DE CONTROLE
+        // Acima de 80px: top-bar esconde + header compacta
+        // Abaixo de 80px: top-bar aparece + header normal
+        if (currentScroll > TRIGGER) {
+            topBar?.classList.add('hide');
+            header?.classList.add('scrolled');
         } else {
-            header.classList.remove('scrolled');
+            topBar?.classList.remove('hide');
+            header?.classList.remove('scrolled');
         }
 
-        headerTicking = false;
+        ticking = false;
     }
 
     window.addEventListener('scroll', () => {
-        if (!headerTicking) {
-            requestAnimationFrame(updateHeader);
-            headerTicking = true;
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
         }
     }, { passive: true });
 
-    // Executa estado inicial
-    updateTopBar();
-    updateHeader();
+    // Estado inicial
+    handleScroll();
 
     // ============================================
-    // SCROLL REVEAL
+    // SCROLL REVEAL (animações ao surgir)
     // ============================================
     const fadeElements = document.querySelectorAll('.fade-up');
     const ANIMATE_ONCE = true;
