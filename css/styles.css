@@ -30,6 +30,7 @@ body {
     color: var(--text-dark);
     scroll-behavior: smooth;
     overflow-x: hidden;
+    overflow-anchor: none; /* CORREÇÃO: previne tremor no scroll */
 }
 
 h1, h2, h3, .hero-title, .section-title, .card-title {
@@ -68,8 +69,13 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     100% { transform: scale(1); }
 }
 
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
 /* ============================================
-   TOP BAR (Ajustada para não cobrir o header)
+   TOP BAR - FIXA NO TOPO
    ============================================ */
 .top-bar {
     background: var(--gold);
@@ -79,45 +85,37 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     font-weight: 700;
     font-size: 0.95rem;
     position: relative;
-    z-index: 999;
-    transition: transform 0.3s ease;
+    z-index: 1001;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 /* ============================================
-   HEADER - FIXO (sem tremedeira)
+   HEADER - SEM TREPIDAÇÃO
    ============================================ */
-.header-placeholder {
-    height: 0;
-    transition: height 0.2s ease;
-}
-
 .header {
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(12px);
     color: var(--text-light);
     padding: 30px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    position: sticky;
+    top: 0;
+    /* CORREÇÕES CRÍTICAS PARA EVITAR TREPIDAÇÃO */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Efeito quando rola a página - a top-bar sobe */
-body.scrolled .top-bar {
-    transform: translateY(-100%);
-}
-
-body.scrolled .header {
+.header.scrolled {
     padding: 22px 0;
     background: rgba(15, 23, 42, 0.98);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-body.scrolled .header .logo-img {
-    height: 84px;
+    animation: slideDown 0.3s ease forwards;
 }
 
 .header .container {
@@ -138,11 +136,15 @@ body.scrolled .header .logo-img {
 .logo-img {
     height: 108px;
     width: auto;
-    transition: transform 0.3s ease, height 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .logo-img:hover {
     transform: scale(1.05);
+}
+
+.header.scrolled .logo-img {
+    height: 84px;
 }
 
 .logo-text {
@@ -238,6 +240,16 @@ body.scrolled .header .logo-img {
     animation: none;
 }
 
+/* PREVINE TREPIDAÇÃO NO SCROLL - todos elementos com movimento */
+.header,
+.top-bar,
+.hero,
+.card,
+.step {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
 .btn-wa-fixed {
     position: fixed;
     bottom: 30px;
@@ -278,7 +290,8 @@ body.scrolled .header .logo-img {
     background-position: center;
     overflow: hidden;
     padding: 80px 0 60px;
-    margin-top: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero::before {
@@ -846,7 +859,6 @@ footer .container {
         padding: 0 20px;
     }
     
-    /* ===== HEADER MOBILE ===== */
     .header .container {
         flex-direction: column;
         gap: 12px;
@@ -860,7 +872,7 @@ footer .container {
         height: 45px;
     }
     
-    body.scrolled .header .logo-img {
+    .header.scrolled .logo-img {
         height: 40px;
     }
     
@@ -893,18 +905,16 @@ footer .container {
         padding: 12px 0;
     }
     
-    body.scrolled .header {
+    .header.scrolled {
         padding: 8px 0;
     }
     
-    /* ===== TOP BAR MOBILE ===== */
     .top-bar {
         font-size: 0.65rem;
         padding: 8px 12px;
         line-height: 1.4;
     }
     
-    /* ===== HERO MOBILE ===== */
     .hero {
         padding: 60px 0 40px;
         min-height: auto;
@@ -952,7 +962,6 @@ footer .container {
         margin-top: 20px;
     }
     
-    /* ===== BOTÕES MOBILE ===== */
     .cta-button {
         padding: 14px 28px;
         font-size: 1rem;
@@ -967,7 +976,6 @@ footer .container {
         gap: 8px;
     }
     
-    /* ===== SECTIONS MOBILE ===== */
     .section {
         padding: 50px 0;
     }
@@ -983,7 +991,6 @@ footer .container {
         padding: 0 10px;
     }
     
-    /* ===== CARDS MOBILE ===== */
     .cards-grid {
         gap: 20px;
     }
@@ -1006,7 +1013,6 @@ footer .container {
         font-size: 0.9rem;
     }
     
-    /* ===== STEPS MOBILE ===== */
     .steps {
         gap: 20px;
         flex-direction: column;
@@ -1033,7 +1039,6 @@ footer .container {
         font-size: 0.9rem;
     }
     
-    /* ===== CARROSSEL MOBILE ===== */
     .swiper-button-prev,
     .swiper-button-next {
         width: 35px;
@@ -1053,7 +1058,6 @@ footer .container {
         font-size: 0.75rem;
     }
     
-    /* ===== TESTEMUNHOS MOBILE ===== */
     .testimonials {
         gap: 20px;
         flex-direction: column;
@@ -1073,7 +1077,6 @@ footer .container {
         font-size: 0.9rem;
     }
     
-    /* ===== SOBRE MOBILE ===== */
     .about-content p {
         font-size: 1rem;
         padding: 0 10px;
@@ -1095,7 +1098,6 @@ footer .container {
         font-size: 0.9rem;
     }
     
-    /* ===== CTA FINAL MOBILE ===== */
     .final-cta {
         padding: 50px 20px;
     }
@@ -1110,7 +1112,6 @@ footer .container {
         margin-bottom: 25px;
     }
     
-    /* ===== FAQ MOBILE ===== */
     .faq-grid {
         gap: 12px;
     }
@@ -1127,7 +1128,6 @@ footer .container {
         font-size: 0.85rem;
     }
     
-    /* ===== FOOTER MOBILE ===== */
     footer {
         padding: 40px 0 25px;
     }
