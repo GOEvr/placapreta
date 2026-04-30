@@ -1,240 +1,193 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Clássicos VR | Certificação Placa Preta Oficial DETRAN - Valorize Seu Clássico</title>
-    <meta name="description" content="Clássicos VR: certificação oficial para veículos antigos. Conquiste a placa preta com agilidade, melhor preço e atendimento em todo Brasil. Transforme seu clássico em patrimônio.">
-    <meta name="keywords" content="placa preta, certificação detran, veículos antigos, clássicos, laudo originalidade, valorização carros antigos, placa preta detran, certificado originalidade">
-    <meta name="author" content="Clássicos VR - Bruno Lugão">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-    <meta name="theme-color" content="#0F172A">
-    <link rel="canonical" href="https://www.classicosvr.com.br">
-    <meta property="og:title" content="Clássicos VR - Certificação Placa Preta Oficial DETRAN">
-    <meta property="og:description" content="Transforme seu clássico em patrimônio oficial com a placa preta. Atendimento ágil e especializado em todo Brasil. + de 500 clientes satisfeitos.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.classicosvr.com.br">
-    <meta property="og:image" content="imagens/1775179642539.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Clássicos VR - Certificação Placa Preta">
-    <meta name="twitter:description" content="Transforme seu clássico em patrimônio oficial com a placa preta.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+/**
+ * Clássicos VR - Script Ultra-Otimizado
+ * Performance, UX, SEO e Carrossel
+ * CORREÇÃO: Header sem trepidação e scroll fluido
+ */
 
-<div class="top-bar">
-    ⚡ Atendimento rápido • Certificação em até 24h • Fale agora no WhatsApp
-</div>
+(function() {
+    'use strict';
 
-<header class="header" id="header">
-    <div class="container">
-        <a href="#" class="logo-container">
-            <img loading="lazy" src="imagens/1775179642539.png" alt="Clássicos VR Logo" class="logo-img">
-            <div class="logo-text">
-                <span class="main">CLÁSSICOS VR</span>
-                <span class="sub">CERTIFICAÇÃO PLACA PRETA</span>
-            </div>
-        </a>
-        <div class="header-contact">
-            <div class="contact-info">
-                <i class="fab fa-whatsapp"></i>
-                <span>(24) 99959-5228</span>
-            </div>
-            <a href="https://wa.me/5524999595228?text=Olá! Gostaria de saber mais sobre a certificação Placa Preta." class="whatsapp-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Fale pelo WhatsApp</a>
-        </div>
-    </div>
-</header>
+    // ============================================
+    // HEADER SCROLL - SEM TREPIDAÇÃO
+    // ============================================
+    const header = document.querySelector('.header');
+    let ticking = false;
+    let lastScrollY = 0;
 
-<main>
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">✨ CERTIFICAÇÃO OFICIAL DETRAN</div>
-                <h1 class="hero-title">Sua paixão por clássicos merece a Placa Preta.</h1>
-                <p class="hero-description">Certificamos veículos com mais de 30 anos e 80% de originalidade, com laudo reconhecido em todo o Brasil. Faça parte da elite dos colecionadores e valorize seu patrimônio automotivo.</p>
-                <div class="benefits-row">
-                    <span class="benefit-item"><i class="fas fa-check-circle"></i> Certificação Oficial DETRAN</span>
-                    <span class="benefit-item"><i class="fas fa-clock"></i> Certificado em até 24h</span>
-                    <span class="benefit-item"><i class="fas fa-tag"></i> Melhor Preço do Mercado</span>
-                </div>
-                <a href="https://wa.me/5524999595228?text=Olá! Quero valorizar meu clássico e saber mais sobre a placa preta." class="cta-button" target="_blank"><i class="fab fa-whatsapp"></i> Quero valorizar meu clássico</a>
-                <div class="rating">⭐ ⭐ ⭐ ⭐ ⭐ + de 500 veículos certificados</div>
-            </div>
-        </div>
-    </section>
+    function updateHeader() {
+        if (!header) return;
+        
+        const currentScrollY = window.scrollY;
+        
+        // Scroll para baixo > 50px
+        if (currentScrollY > 50) {
+            if (!header.classList.contains('scrolled')) {
+                header.classList.add('scrolled');
+                document.body.classList.add('has-scrolled');
+            }
+        } else {
+            if (header.classList.contains('scrolled')) {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('has-scrolled');
+            }
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title fade-up">Por que ter a Placa Preta?</h2>
-            <p class="section-sub fade-up">Um veículo com placa preta não é apenas um carro antigo, é um pedaço da história automotiva. Mostre que você preserva o passado e valoriza o futuro.</p>
-            <div class="cards-grid">
-                <div class="card fade-up"><i class="fas fa-landmark"></i><h3>Reconhecimento histórico</h3><p>Seu veículo oficialmente reconhecido como patrimônio cultural e colecionável.</p></div>
-                <div class="card fade-up"><i class="fas fa-chart-line"></i><h3>Valorização de mercado</h3><p>Aumento significativo do valor comercial com certificação oficial.</p></div>
-                <div class="card fade-up"><i class="fas fa-file-alt"></i><h3>Documentação regularizada</h3><p>Certificado de originalidade reconhecido pelo DETRAN em todo país.</p></div>
-                <div class="card fade-up"><i class="fas fa-heart"></i><h3>Orgulho e tradição</h3><p>Preserve a história automotiva e mostre sua paixão por clássicos.</p></div>
-            </div>
-        </div>
-    </section>
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateHeader();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title fade-up">Como funciona o processo?</h2>
-            <p class="section-sub fade-up">Um processo simples, seguro e totalmente orientado por especialistas</p>
-            <div class="steps">
-                <div class="step fade-up"><div class="step-number">01</div><h3>Envie os dados e fotos</h3><p>Preencha o formulário com informações do seu veículo e envie fotos detalhadas.</p></div>
-                <div class="step fade-up"><div class="step-number">02</div><h3>Avaliação e orientação</h3><p>Nossa equipe avalia e orienta sobre adequações necessárias para certificação.</p></div>
-                <div class="step fade-up"><div class="step-number">03</div><h3>Vistoria agendada</h3><p>Agendamos vistoria com especialistas credenciados em sua região.</p></div>
-                <div class="step fade-up"><div class="step-number">04</div><h3>Certificado e Placa Preta</h3><p>Receba o Certificado de Originalidade e conquiste sua Placa Preta oficial.</p></div>
-            </div>
-        </div>
-    </section>
+    // Executa no load para estado inicial
+    updateHeader();
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title fade-up">Galeria de Clássicos Certificados</h2>
-            <p class="section-sub fade-up">Cada veículo conta uma história, cada Placa Preta celebra um legado</p>
-            
-            <div class="swiper gallery-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/fusca.jpg" alt="Fusca 1968" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Fusca'">
-                            <div class="gallery-card-info">
-                                <h4>Volkswagen Fusca</h4>
-                                <p>1968 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/opala.jpg" alt="Opala 1978" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Opala'">
-                            <div class="gallery-card-info">
-                                <h4>Chevrolet Opala</h4>
-                                <p>1978 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/maverick.jpg" alt="Maverick V8" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Maverick'">
-                            <div class="gallery-card-info">
-                                <h4>Ford Maverick</h4>
-                                <p>1975 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/puma.jpg" alt="Puma GTB" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Puma'">
-                            <div class="gallery-card-info">
-                                <h4>Puma GTB</h4>
-                                <p>1977 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/passat.jpg" alt="Passat TS" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Passat'">
-                            <div class="gallery-card-info">
-                                <h4>Volkswagen Passat</h4>
-                                <p>1976 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gallery-card">
-                            <img loading="lazy" src="imagens/caravan.jpg" alt="Caravan SS" onerror="this.src='https://placehold.co/600x450/334155/D4AF37?text=Caravan'">
-                            <div class="gallery-card-info">
-                                <h4>Chevrolet Caravan SS</h4>
-                                <p>1979 • Placa Preta</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section>
+    // ============================================
+    // SCROLL REVEAL
+    // ============================================
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const ANIMATE_ONCE = true;
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title fade-up">Casos de Sucesso</h2>
-            <p class="section-sub fade-up">Centenas de proprietários já conquistaram sua placa preta com a Clássicos VR</p>
-            <div class="testimonials">
-                <div class="testimonial fade-up"><i class="fas fa-quote-left"></i><p>"Sempre sonhei com a placa preta no meu Opala. A Clássicos VR fez tudo de forma rápida e segura. Orgulho define!"</p><strong>João Paulo Silva</strong><br><span>Chevrolet Opala 1978</span></div>
-                <div class="testimonial fade-up"><i class="fas fa-quote-left"></i><p>"Processo transparente do início ao fim. Meu Maverick agora tem o reconhecimento que sempre mereceu."</p><strong>Roberto Mendes</strong><br><span>Ford Maverick 1975</span></div>
-                <div class="testimonial fade-up"><i class="fas fa-quote-left"></i><p>"Valorização imediata após a certificação. Recomendo a Clássicos VR para todos os apaixonados."</p><strong>Carlos Eduardo</strong><br><span>Volkswagen Fusca 1968</span></div>
-            </div>
-        </div>
-    </section>
+    if (fadeElements.length) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title fade-up">Quem é a Clássicos VR?</h2>
-            <div class="about-content">
-                <p class="fade-up">Somos especialistas apaixonados por veículos clássicos no Rio de Janeiro e região. Com experiência no mercado, ajudamos colecionadores a conquistarem a certificação oficial de originalidade, garantindo a valorização e o reconhecimento do seu patrimônio automotivo.</p>
-                <div class="about-features fade-up">
-                    <div><i class="fas fa-map-marker-alt"></i> Atuação nacional</div>
-                    <div><i class="fas fa-headset"></i> Suporte completo</div>
-                    <div><i class="fas fa-certificate"></i> Credenciamento reconhecido</div>
-                </div>
-                <div class="about-whatsapp fade-up">
-                    <i class="fab fa-whatsapp"></i> (24) 99959-5228
-                </div>
-            </div>
-        </div>
-    </section>
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    if (ANIMATE_ONCE) {
+                        observer.unobserve(entry.target);
+                    }
+                } else if (!ANIMATE_ONCE) {
+                    entry.target.classList.remove('revealed');
+                }
+            });
+        };
 
-    <div class="final-cta fade-up">
-        <div class="container">
-            <h2>Seu clássico pode valer muito mais hoje</h2>
-            <p>Fale agora e descubra se pode receber a Placa Preta</p>
-            <a href="https://wa.me/5524999595228?text=Olá! Quero saber se meu veículo pode receber a Placa Preta" class="cta-button"><i class="fab fa-whatsapp"></i> Falar com especialista</a>
-        </div>
-    </div>
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        fadeElements.forEach(el => observer.observe(el));
+    }
 
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title fade-up">Dúvidas Frequentes</h2>
-            <div class="faq-grid" id="faqContainer">
-                <div class="faq-item fade-up"><div class="faq-question">Quais veículos podem ter Placa Preta? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Veículos com mais de 30 anos e 80% de originalidade, conforme legislação do DETRAN.</div></div>
-                <div class="faq-item fade-up"><div class="faq-question">Qual o prazo total do processo? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Entre 15 a 30 dias, certificado em até 24h após vistoria.</div></div>
-                <div class="faq-item fade-up"><div class="faq-question">A vistoria é feita na minha cidade? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Sim, atendemos todo Brasil com vistoriadores credenciados.</div></div>
-                <div class="faq-item fade-up"><div class="faq-question">Qual o investimento? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Entre em contato pelo WhatsApp (24) 99959-5228 para um orçamento personalizado.</div></div>
-            </div>
-        </div>
-    </section>
-</main>
+    // ============================================
+    // CARROSSEL (Swiper)
+    // ============================================
+    if (typeof Swiper !== 'undefined') {
+        const gallerySwiper = new Swiper('.gallery-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+            effect: 'slide',
+            speed: 800,
+        });
+    }
 
-<footer>
-    <div class="container">
-        <img loading="lazy" src="imagens/1775179642539.png" alt="Clássicos VR Logo" class="footer-logo">
-        <p>Certificação oficial de veículos antigos – Placa Preta</p>
-        <div class="footer-wa">
-            <a href="https://wa.me/5524999595228?text=Olá! Gostaria de saber mais sobre a certificação Placa Preta." target="_blank"><i class="fab fa-whatsapp"></i> (24) 99959-5228</a>
-        </div>
-        <p class="copyright">© 2026 Clássicos VR. Todos os direitos reservados.</p>
-        <p class="credits">Bruno Lugão - (24) 99959-5228</p>
-    </div>
-</footer>
+    // ============================================
+    // FAQ MELHORADO
+    // ============================================
+    const faqItems = document.querySelectorAll('.faq-item');
 
-<a href="https://wa.me/5524999595228?text=Olá! Gostaria de saber mais sobre a placa preta." class="btn-wa-fixed" target="_blank" aria-label="Fale conosco no WhatsApp">
-    <i class="fab fa-whatsapp fa-lg"></i> (24) 99959-5228
-</a>
+    if (faqItems.length) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                faqItems.forEach(i => i.classList.remove('active'));
+            }
+        });
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="js/script.js" defer></script>
-</body>
-</html>
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question?.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        faqItems[0]?.classList.add('active');
+    }
+
+    // ============================================
+    // SMOOTH SCROLL SEGURO
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href.length <= 1) return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ============================================
+    // LAZY LOADING (fallback)
+    // ============================================
+    if (!('loading' in HTMLImageElement.prototype)) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    // ============================================
+    // SCHEMA.ORG PARA SEO
+    // ============================================
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+    schemaScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Clássicos VR",
+        "description": "Certificação Placa Preta para veículos antigos",
+        "telephone": "+5524999595228",
+        "image": "https://goevr.github.io/placapreta/imagens/1775179642539.png",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Rio de Janeiro",
+            "addressRegion": "RJ",
+            "addressCountry": "BR"
+        }
+    });
+    document.head.appendChild(schemaScript);
+
+})();
