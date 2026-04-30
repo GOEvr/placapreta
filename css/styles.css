@@ -111,7 +111,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     left: 0;
     width: 100%;
     height: 120px;
-    margin-top: 48px; /* abaixo da top-bar */
+    margin-top: 48px;
     display: flex;
     align-items: center;
     background: rgba(15, 23, 42, 0.85);
@@ -126,7 +126,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     animation: headerFade 0.6s ease;
 }
 
-/* ESTADO COMPACTO - quando rolar */
 .header.scrolled {
     height: 80px;
     background: rgba(15, 23, 42, 0.95);
@@ -134,7 +133,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Efeito hover premium */
 .header:hover {
     backdrop-filter: blur(12px);
 }
@@ -155,7 +153,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
-/* LOGO COM ANIMAÇÃO SUAVE PREMIUM */
 .logo-img {
     height: 90px;
     width: auto;
@@ -300,7 +297,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
 }
 
-/* MOBILE: ajuste de performance */
+/* MOBILE: remove blur para melhor performance */
 @media (max-width: 768px) {
     .header {
         backdrop-filter: none;
@@ -319,8 +316,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     min-height: auto;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.9) 100%), 
-                url('../imagens/hero-bg-car.jpg');
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.9) 100%);
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -726,8 +722,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .final-cta {
     text-align: center;
     padding: 90px 20px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(2, 6, 23, 0.92) 100%),
-                url('../imagens/cta-bg-car.jpg');
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(2, 6, 23, 0.92) 100%);
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -820,8 +815,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
    FOOTER COM IMAGEM DE FUNDO
    ============================================ */
 footer {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%),
-                url('../imagens/footer-bg-car.jpg');
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.98) 100%);
     background-size: cover;
     background-position: center;
     color: var(--text-muted);
@@ -903,7 +897,7 @@ footer .container {
 }
 
 /* ============================================
-   RESPONSIVE - MOBILE OTIMIZADO
+   RESPONSIVE - MOBILE OTIMIZADO (COMPLETO)
    ============================================ */
 
 /* Tablet (768px - 1024px) */
@@ -917,7 +911,7 @@ footer .container {
     }
     
     .hero {
-        padding: 60px 0 50px;
+        padding: 50px 0;
     }
 }
 
@@ -999,28 +993,21 @@ footer .container {
     }
     
     .hero {
-        padding: 40px 0 40px;
-        min-height: auto;
+        padding: 40px 0;
     }
     
     .hero .container {
         min-height: auto;
     }
     
-    .hero-content {
-        padding: 0;
-    }
-    
     .hero-title {
         font-size: 2.2rem;
-        line-height: 1.2;
         margin-bottom: 16px;
     }
     
     .hero-description {
         font-size: 0.9rem;
         margin-bottom: 20px;
-        padding: 0 5px;
     }
     
     .hero-badge {
@@ -1047,7 +1034,6 @@ footer .container {
     .cta-button {
         padding: 12px 24px;
         font-size: 0.95rem;
-        gap: 8px;
     }
     
     .btn-wa-fixed {
@@ -1055,7 +1041,6 @@ footer .container {
         right: 16px;
         padding: 10px 16px;
         font-size: 0.75rem;
-        gap: 6px;
     }
     
     .section {
@@ -1064,13 +1049,11 @@ footer .container {
     
     .section-title {
         font-size: 2rem;
-        margin-bottom: 15px;
     }
     
     .section-sub {
         font-size: 0.9rem;
         margin-bottom: 30px;
-        padding: 0 10px;
     }
     
     .cards-grid {
@@ -1083,16 +1066,10 @@ footer .container {
     
     .card i {
         font-size: 2.2rem;
-        margin-bottom: 14px;
     }
     
     .card h3 {
         font-size: 1.3rem;
-        margin-bottom: 10px;
-    }
-    
-    .card p {
-        font-size: 0.85rem;
     }
     
     .steps {
@@ -1101,7 +1078,6 @@ footer .container {
     }
     
     .step {
-        min-width: auto;
         padding: 24px 16px;
     }
     
@@ -1109,39 +1085,6 @@ footer .container {
         width: 48px;
         height: 48px;
         font-size: 1.4rem;
-        margin-bottom: 16px;
-    }
-    
-    .step h3 {
-        font-size: 1.2rem;
-        margin-bottom: 8px;
-    }
-    
-    .step p {
-        font-size: 0.85rem;
-    }
-    
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .swiper-button-prev:after,
-    .swiper-button-next:after {
-        font-size: 0.9rem;
-    }
-    
-    .gallery-card-info {
-        padding: 12px;
-    }
-    
-    .gallery-card-info h4 {
-        font-size: 0.9rem;
-    }
-    
-    .gallery-card-info p {
-        font-size: 0.7rem;
     }
     
     .testimonials {
@@ -1155,34 +1098,10 @@ footer .container {
         max-width: 100%;
     }
     
-    .testimonial i {
-        font-size: 1.3rem;
-    }
-    
-    .testimonial p {
-        font-size: 0.85rem;
-        margin: 12px 0;
-    }
-    
-    .about-content p {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
-    
     .about-features {
         gap: 16px;
         flex-direction: column;
         align-items: center;
-        margin: 30px 0;
-    }
-    
-    .about-features div {
-        font-size: 0.85rem;
-    }
-    
-    .about-whatsapp {
-        padding: 10px 24px;
-        font-size: 0.85rem;
     }
     
     .final-cta {
@@ -1191,12 +1110,6 @@ footer .container {
     
     .final-cta h2 {
         font-size: 1.5rem;
-        margin-bottom: 12px;
-    }
-    
-    .final-cta p {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
     }
     
     .faq-grid {
@@ -1211,14 +1124,89 @@ footer .container {
         font-size: 0.95rem;
     }
     
-    .faq-answer {
-        font-size: 0.8rem;
-    }
-    
     footer {
         padding: 40px 0 25px;
     }
     
     .footer-logo {
         height: 40px;
-        margin-bottom: 12px;
+    }
+    
+    .footer-wa a {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile Pequeno (480px) */
+@media (max-width: 480px) {
+    body {
+        padding-top: 130px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+    }
+    
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .final-cta .cta-button {
+        width: auto;
+        min-width: 80%;
+    }
+    
+    .card {
+        padding: 20px 12px;
+    }
+    
+    .card i {
+        font-size: 2rem;
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header-contact {
+        flex-direction: column;
+    }
+    
+    .contact-info {
+        justify-content: center;
+    }
+}
+
+/* Ajustes para iPhone com notch */
+@supports (padding: max(0px)) {
+    .header {
+        padding-left: max(30px, env(safe-area-inset-left));
+        padding-right: max(30px, env(safe-area-inset-right));
+    }
+    
+    .btn-wa-fixed {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(20px, env(safe-area-inset-right));
+    }
+}
