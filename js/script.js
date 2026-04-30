@@ -7,59 +7,42 @@
     'use strict';
 
     // ============================================
-    // HEADER SCROLL (CORRIGIDO - SEM TREMEDEIRA)
+    // HEADER SCROLL (com delay suave) - THRESHOLD AJUSTADO PARA 80
     // ============================================
     const header = document.querySelector('.header');
-    const topBar = document.querySelector('.top-bar');
-    let headerPlaceholder = document.querySelector('.header-placeholder');
+    let ticking = false;
 
-    // Cria o elemento placeholder se ele não existir
-    if (!headerPlaceholder && header) {
-        headerPlaceholder = document.createElement('div');
-        headerPlaceholder.className = 'header-placeholder';
-        header.parentNode.insertBefore(headerPlaceholder, header);
-    }
-
-    function updateHeaderScroll() {
+    function updateHeader() {
         if (!header) return;
-
-        const scrollY = window.scrollY;
-        const headerHeight = header.offsetHeight;
         
-        // Atualiza a altura do placeholder para evitar o "pulo" do conteúdo
-        if (headerPlaceholder) {
-            if (scrollY > 50) {
-                headerPlaceholder.style.height = `${headerHeight}px`;
-            } else {
-                headerPlaceholder.style.height = '0';
+        // ALTERADO: de 50 para 80 para evitar ativação na borda
+        if (window.scrollY > 80) {
+            if (!header.classList.contains('scrolled')) {
+                header.classList.add('scrolled');
+            }
+        } else {
+            if (header.classList.contains('scrolled')) {
+                header.classList.remove('scrolled');
             }
         }
-
-        // Adiciona a classe 'scrolled' ao body quando rolar
-        if (scrollY > 50) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
+        
+        ticking = false;
     }
 
-    // Usa requestAnimationFrame para suavizar
-    let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
-                updateHeaderScroll();
+                updateHeader();
                 ticking = false;
             });
             ticking = true;
         }
     }, { passive: true });
 
-    // Executa uma vez ao carregar para definir o estado inicial
-    updateHeaderScroll();
+    updateHeader();
 
     // ============================================
-    // SCROLL REVEAL (configurável)
+    // SCROLL REVEAL
     // ============================================
     const fadeElements = document.querySelectorAll('.fade-up');
     const ANIMATE_ONCE = true;
@@ -120,17 +103,14 @@
             effect: 'slide',
             speed: 800,
         });
-    } else {
-        console.warn('Swiper não foi carregado. Verifique o link do CDN.');
     }
 
     // ============================================
-    // FAQ MELHORADO (com ícone animado e tecla ESC)
+    // FAQ MELHORADO
     // ============================================
     const faqItems = document.querySelectorAll('.faq-item');
 
     if (faqItems.length) {
-        // Fechar FAQ com tecla ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 faqItems.forEach(i => i.classList.remove('active'));
@@ -142,18 +122,13 @@
 
             question?.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                
-                // Fecha todos os outros
                 faqItems.forEach(i => i.classList.remove('active'));
-                
-                // Abre o atual se não estava ativo
                 if (!isActive) {
                     item.classList.add('active');
                 }
             });
         });
 
-        // Abrir primeiro FAQ
         faqItems[0]?.classList.add('active');
     }
 
@@ -163,11 +138,8 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            
             if (!href || href === '#' || href.length <= 1) return;
-            
             const target = document.querySelector(href);
-            
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({
