@@ -1,17 +1,47 @@
 /**
  * Clássicos VR - Script Premium
- * Header inteligente com scroll suave
+ * Header inteligente com scroll suave + top-bar oculta
  */
 
 (function() {
     'use strict';
 
     // ============================================
-    // HEADER PREMIUM - COM SCROLL SUAVE
+    // TOP-BAR: SOME AO ROLAR PARA BAIXO
+    // ============================================
+    const topBar = document.querySelector('.top-bar');
+    let lastScroll = 0;
+    let scrollTicking = false;
+
+    function updateTopBar() {
+        if (!topBar) return;
+        
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 50 && currentScroll > lastScroll) {
+            // ROLANDO PARA BAIXO → esconde top-bar
+            topBar.classList.add('hide');
+        } else if (currentScroll <= 50 || currentScroll < lastScroll) {
+            // ROLANDO PARA CIMA OU NO TOPO → mostra top-bar
+            topBar.classList.remove('hide');
+        }
+
+        lastScroll = currentScroll;
+        scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            requestAnimationFrame(updateTopBar);
+            scrollTicking = true;
+        }
+    }, { passive: true });
+
+    // ============================================
+    // HEADER PREMIUM - COMPACTA AO ROLAR
     // ============================================
     const header = document.getElementById('header');
-    let lastScroll = 0;
-    let ticking = false;
+    let headerTicking = false;
 
     function updateHeader() {
         if (!header) return;
@@ -24,17 +54,18 @@
             header.classList.remove('scrolled');
         }
 
-        lastScroll = currentScroll;
-        ticking = false;
+        headerTicking = false;
     }
 
     window.addEventListener('scroll', () => {
-        if (!ticking) {
+        if (!headerTicking) {
             requestAnimationFrame(updateHeader);
-            ticking = true;
+            headerTicking = true;
         }
     }, { passive: true });
 
+    // Executa estado inicial
+    updateTopBar();
     updateHeader();
 
     // ============================================
