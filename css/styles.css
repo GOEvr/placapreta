@@ -30,6 +30,7 @@ body {
     color: var(--text-dark);
     scroll-behavior: smooth;
     overflow-x: hidden;
+    padding-top: 168px; /* 48px top-bar + 120px header */
 }
 
 h1, h2, h3, .hero-title, .section-title, .card-title {
@@ -68,13 +69,8 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     100% { transform: scale(1); }
 }
 
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-}
-
 /* ============================================
-   TOP BAR - CORRIGIDA (altura fixa)
+   TOP BAR - FIXA (nível profissional)
    ============================================ */
 .top-bar {
     background: var(--gold);
@@ -83,9 +79,11 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     padding: 12px;
     font-weight: 700;
     font-size: 0.95rem;
-    position: relative;
-    z-index: 1001;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    z-index: 1002;
     height: 48px;
     display: flex;
     align-items: center;
@@ -94,7 +92,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HEADER - CORRIGIDO (altura fixa + sem reflow)
+   HEADER - SEM OFFSET (top: 0)
    ============================================ */
 .header {
     background: rgba(15, 23, 42, 0.95);
@@ -102,15 +100,20 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     color: var(--text-light);
     padding: 26px 0;
     height: 120px;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1001;
     transition: background 0.3s ease, box-shadow 0.3s ease;
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     transform: translateZ(0);
-    will-change: transform;
     backface-visibility: hidden;
+}
+
+/* Header tem margem superior para ficar ABAIXO da top-bar */
+.header {
+    margin-top: 48px;
 }
 
 .header.scrolled {
@@ -134,7 +137,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
-/* LOGO COM TRANSFORM - CORRIGIDO */
+/* LOGO COM TRANSFORM - GPU acelerado */
 .logo-img {
     height: 108px;
     width: auto;
@@ -270,7 +273,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
 }
 
-/* MOBILE: remove blur para melhor performance - NOVA REGRA */
+/* MOBILE: remove blur para melhor performance */
 @media (max-width: 768px) {
     .header {
         backdrop-filter: none;
@@ -291,7 +294,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 80px 0 60px;
+    padding: 60px 0 60px;
 }
 
 .hero::before {
@@ -849,14 +852,26 @@ footer .container {
     }
     
     .hero {
-        padding: 70px 0 50px;
+        padding: 60px 0 50px;
     }
 }
 
 /* Mobile Grande (768px) */
 @media (max-width: 768px) {
+    body {
+        padding-top: 138px; /* top-bar altura menor no mobile */
+    }
+    
     .container {
         padding: 0 20px;
+    }
+    
+    .top-bar {
+        height: auto;
+        min-height: 44px;
+        font-size: 0.65rem;
+        padding: 8px 12px;
+        line-height: 1.4;
     }
     
     .header .container {
@@ -912,16 +927,8 @@ footer .container {
         padding: 8px 0;
     }
     
-    .top-bar {
-        font-size: 0.65rem;
-        padding: 8px 12px;
-        line-height: 1.4;
-        height: auto;
-        min-height: 44px;
-    }
-    
     .hero {
-        padding: 60px 0 40px;
+        padding: 40px 0 40px;
         min-height: auto;
     }
     
@@ -1159,6 +1166,10 @@ footer .container {
 
 /* Mobile Pequeno (480px) */
 @media (max-width: 480px) {
+    body {
+        padding-top: 130px;
+    }
+    
     .container {
         padding: 0 16px;
     }
