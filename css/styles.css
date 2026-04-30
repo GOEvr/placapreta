@@ -69,8 +69,19 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     100% { transform: scale(1); }
 }
 
+@keyframes headerFade {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* ============================================
-   TOP BAR - FIXA (nível profissional)
+   TOP BAR - FIXA PREMIUM
    ============================================ */
 .top-bar {
     background: var(--gold);
@@ -92,34 +103,40 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HEADER - SEM OFFSET (top: 0)
+   HEADER PREMIUM (Nível Apple/Tesla)
    ============================================ */
 .header {
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(8px);
-    color: var(--text-light);
-    padding: 26px 0;
-    height: 120px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: 120px;
+    margin-top: 48px; /* abaixo da top-bar */
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    transition: 
+        height 0.35s cubic-bezier(0.2, 0.9, 0.4, 1),
+        background 0.3s ease,
+        box-shadow 0.3s ease;
     z-index: 1001;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    transform: translateY(0);
+    animation: headerFade 0.6s ease;
 }
 
-/* Header tem margem superior para ficar ABAIXO da top-bar */
-.header {
-    margin-top: 48px;
-}
-
+/* ESTADO COMPACTO - quando rolar */
 .header.scrolled {
-    padding: 26px 0;
-    background: rgba(15, 23, 42, 0.98);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Efeito hover premium */
+.header:hover {
+    backdrop-filter: blur(12px);
 }
 
 .header .container {
@@ -128,6 +145,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
 }
 
 .logo-container {
@@ -137,12 +155,12 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
-/* LOGO COM TRANSFORM - GPU acelerado */
+/* LOGO COM ANIMAÇÃO SUAVE PREMIUM */
 .logo-img {
-    height: 108px;
+    height: 90px;
     width: auto;
     transform: scale(1);
-    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1);
     transform-origin: left center;
 }
 
@@ -151,7 +169,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .header.scrolled .logo-img {
-    transform: scale(0.78);
+    transform: scale(0.7);
 }
 
 .logo-text {
@@ -165,6 +183,11 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
     letter-spacing: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.header.scrolled .logo-text .main {
+    transform: translateY(-2px);
 }
 
 .logo-text .sub {
@@ -199,7 +222,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   BOTÕES
+   BOTÕES PREMIUM
    ============================================ */
 .whatsapp-btn {
     background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
@@ -211,7 +234,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: all 0.3s ease;
     font-size: 1rem;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
@@ -219,6 +242,10 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .whatsapp-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.header.scrolled .whatsapp-btn {
+    transform: scale(0.95);
 }
 
 .cta-button {
@@ -273,11 +300,14 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
 }
 
-/* MOBILE: remove blur para melhor performance */
+/* MOBILE: ajuste de performance */
 @media (max-width: 768px) {
     .header {
         backdrop-filter: none;
         background: rgba(15, 23, 42, 0.98);
+    }
+    .header:hover {
+        backdrop-filter: none;
     }
 }
 
@@ -445,6 +475,12 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     margin-bottom: 16px;
 }
 
+.card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-gray);
+}
+
 /* ============================================
    STEPS
    ============================================ */
@@ -491,6 +527,12 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .step h3 {
     font-size: 1.5rem;
     margin-bottom: 12px;
+}
+
+.step p {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.5;
 }
 
 /* ============================================
@@ -615,7 +657,18 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .testimonial p {
     font-size: 1rem;
     line-height: 1.5;
+    font-style: italic;
     margin: 16px 0;
+    color: var(--text-gray);
+}
+
+.testimonial strong {
+    color: var(--primary-dark);
+}
+
+.testimonial span {
+    font-size: 0.85rem;
+    color: var(--gold);
 }
 
 /* ============================================
@@ -644,6 +697,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .about-features div {
     color: var(--gold);
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .about-features i {
@@ -658,6 +712,12 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     color: var(--gold);
     border: 1px solid rgba(212, 175, 55, 0.3);
     font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.about-whatsapp:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
 }
 
 /* ============================================
@@ -790,6 +850,11 @@ footer .container {
     height: 55px;
     width: auto;
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.02);
 }
 
 .footer-wa {
@@ -859,7 +924,7 @@ footer .container {
 /* Mobile Grande (768px) */
 @media (max-width: 768px) {
     body {
-        padding-top: 138px; /* top-bar altura menor no mobile */
+        padding-top: 140px;
     }
     
     .container {
@@ -874,9 +939,21 @@ footer .container {
         line-height: 1.4;
     }
     
+    .header {
+        height: auto;
+        min-height: 80px;
+        margin-top: 44px;
+    }
+    
+    .header.scrolled {
+        height: auto;
+        min-height: 65px;
+    }
+    
     .header .container {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        padding: 12px 20px;
     }
     
     .logo-container {
@@ -888,8 +965,7 @@ footer .container {
     }
     
     .header.scrolled .logo-img {
-        transform: scale(1);
-        height: 40px;
+        transform: scale(0.85);
     }
     
     .logo-text .main {
@@ -905,26 +981,21 @@ footer .container {
     .header-contact {
         width: 100%;
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
     }
     
     .contact-info span {
-        font-size: 0.9rem;
-    }
-    
-    .whatsapp-btn {
-        padding: 10px 20px;
         font-size: 0.85rem;
     }
     
-    .header {
-        padding: 12px 0;
-        height: auto;
-        min-height: 90px;
+    .whatsapp-btn {
+        padding: 8px 18px;
+        font-size: 0.8rem;
     }
     
-    .header.scrolled {
-        padding: 8px 0;
+    .header.scrolled .whatsapp-btn {
+        transform: scale(0.95);
     }
     
     .hero {
@@ -941,51 +1012,50 @@ footer .container {
     }
     
     .hero-title {
-        font-size: 2.3rem;
+        font-size: 2.2rem;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
     
     .hero-description {
-        font-size: 0.95rem;
-        margin-bottom: 25px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
         padding: 0 5px;
     }
     
     .hero-badge {
-        padding: 6px 18px;
-        font-size: 0.75rem;
-        margin-bottom: 20px;
+        padding: 5px 16px;
+        font-size: 0.7rem;
+        margin-bottom: 16px;
     }
     
     .benefits-row {
-        gap: 10px;
-        margin: 25px 0;
-        justify-content: center;
+        gap: 8px;
+        margin: 20px 0;
     }
     
     .benefit-item {
-        font-size: 0.75rem;
-        padding: 6px 14px;
+        font-size: 0.7rem;
+        padding: 5px 12px;
     }
     
     .rating {
-        font-size: 0.85rem;
-        margin-top: 20px;
+        font-size: 0.8rem;
+        margin-top: 16px;
     }
     
     .cta-button {
-        padding: 14px 28px;
-        font-size: 1rem;
+        padding: 12px 24px;
+        font-size: 0.95rem;
         gap: 8px;
     }
     
     .btn-wa-fixed {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 18px;
-        font-size: 0.8rem;
-        gap: 8px;
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 16px;
+        font-size: 0.75rem;
+        gap: 6px;
     }
     
     .section {
@@ -998,95 +1068,100 @@ footer .container {
     }
     
     .section-sub {
-        font-size: 0.95rem;
-        margin-bottom: 35px;
+        font-size: 0.9rem;
+        margin-bottom: 30px;
         padding: 0 10px;
     }
     
     .cards-grid {
-        gap: 20px;
+        gap: 16px;
     }
     
     .card {
-        padding: 30px 20px;
+        padding: 25px 16px;
     }
     
     .card i {
-        font-size: 2.5rem;
-        margin-bottom: 16px;
+        font-size: 2.2rem;
+        margin-bottom: 14px;
     }
     
     .card h3 {
-        font-size: 1.4rem;
-        margin-bottom: 12px;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
     }
     
     .card p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .steps {
-        gap: 20px;
+        gap: 16px;
         flex-direction: column;
     }
     
     .step {
         min-width: auto;
-        padding: 30px 20px;
+        padding: 24px 16px;
     }
     
     .step-number {
-        width: 55px;
-        height: 55px;
-        font-size: 1.6rem;
-        margin-bottom: 18px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+        margin-bottom: 16px;
     }
     
     .step h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
     }
     
     .step p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .swiper-button-prev,
     .swiper-button-next {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
     }
     
     .swiper-button-prev:after,
     .swiper-button-next:after {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-card-info {
+        padding: 12px;
     }
     
     .gallery-card-info h4 {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .gallery-card-info p {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
     
     .testimonials {
-        gap: 20px;
+        gap: 16px;
         flex-direction: column;
         align-items: center;
     }
     
     .testimonial {
-        padding: 25px;
+        padding: 20px;
         max-width: 100%;
     }
     
     .testimonial i {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .testimonial p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        margin: 12px 0;
     }
     
     .about-content p {
@@ -1095,33 +1170,33 @@ footer .container {
     }
     
     .about-features {
-        gap: 20px;
+        gap: 16px;
         flex-direction: column;
         align-items: center;
-        margin: 35px 0;
+        margin: 30px 0;
     }
     
     .about-features div {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .about-whatsapp {
-        padding: 12px 28px;
-        font-size: 0.9rem;
+        padding: 10px 24px;
+        font-size: 0.85rem;
     }
     
     .final-cta {
-        padding: 50px 20px;
+        padding: 40px 16px;
     }
     
     .final-cta h2 {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 12px;
     }
     
     .final-cta p {
-        font-size: 0.95rem;
-        margin-bottom: 25px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     }
     
     .faq-grid {
@@ -1129,15 +1204,15 @@ footer .container {
     }
     
     .faq-item {
-        padding: 16px 20px;
+        padding: 14px 18px;
     }
     
     .faq-question {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .faq-answer {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
     
     footer {
@@ -1145,149 +1220,5 @@ footer .container {
     }
     
     .footer-logo {
-        height: 45px;
-        margin-bottom: 15px;
-    }
-    
-    .footer-wa {
-        margin: 20px 0;
-    }
-    
-    .footer-wa a {
-        padding: 10px 24px;
-        font-size: 0.85rem;
-        gap: 8px;
-    }
-    
-    .copyright, .credits {
-        font-size: 0.7rem;
-    }
-}
-
-/* Mobile Pequeno (480px) */
-@media (max-width: 480px) {
-    body {
-        padding-top: 130px;
-    }
-    
-    .container {
-        padding: 0 16px;
-    }
-    
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    .hero-description {
-        font-size: 0.85rem;
-    }
-    
-    .section-title {
-        font-size: 1.7rem;
-    }
-    
-    .section-sub {
-        font-size: 0.85rem;
-    }
-    
-    .benefit-item {
-        font-size: 0.7rem;
-        padding: 5px 12px;
-    }
-    
-    .cta-button {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .final-cta .cta-button {
-        width: auto;
-        min-width: 80%;
-    }
-    
-    .card {
-        padding: 25px 16px;
-    }
-    
-    .card i {
-        font-size: 2rem;
-    }
-    
-    .card h3 {
-        font-size: 1.2rem;
-    }
-    
-    .card p {
-        font-size: 0.85rem;
-    }
-    
-    .step {
-        padding: 20px 16px;
-    }
-    
-    .step-number {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
-    
-    .step h3 {
-        font-size: 1.1rem;
-    }
-    
-    .step p {
-        font-size: 0.85rem;
-    }
-    
-    .final-cta h2 {
-        font-size: 1.4rem;
-    }
-    
-    .btn-wa-fixed {
-        padding: 10px 16px;
-        font-size: 0.7rem;
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .whatsapp-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .header-contact {
-        width: 100%;
-        flex-direction: column;
-    }
-    
-    .contact-info {
-        justify-content: center;
-    }
-}
-
-/* Mobile muito pequeno (375px) */
-@media (max-width: 375px) {
-    .hero-title {
-        font-size: 1.6rem;
-    }
-    
-    .final-cta .cta-button {
-        min-width: 90%;
-        padding: 12px 20px;
-    }
-}
-
-/* Ajustes para telas com notch (iPhone) */
-@supports (padding: max(0px)) {
-    .header {
-        padding-left: max(30px, env(safe-area-inset-left));
-        padding-right: max(30px, env(safe-area-inset-right));
-    }
-    
-    .btn-wa-fixed {
-        bottom: max(20px, env(safe-area-inset-bottom));
-        right: max(20px, env(safe-area-inset-right));
-    }
-}
+        height: 40px;
+        margin-bottom: 12px;
