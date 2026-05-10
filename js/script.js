@@ -9,23 +9,17 @@
     // ============================================
     // SCROLL COM PONTO ÚNICO DE CONTROLE
     // ============================================
-    const topBar = document.querySelector('.top-bar');
     const header = document.getElementById('header');
 
     let ticking = false;
-    const TRIGGER = 80; // PONTO ÚNICO - resolve o conflito entre 50 e 80!
+    const TRIGGER = 80;
 
     function handleScroll() {
         const currentScroll = window.scrollY;
 
-        // 🔒 PONTO ÚNICO DE CONTROLE
-        // Acima de 80px: top-bar esconde + header compacta
-        // Abaixo de 80px: top-bar aparece + header normal
         if (currentScroll > TRIGGER) {
-            topBar?.classList.add('hide');
             header?.classList.add('scrolled');
         } else {
-            topBar?.classList.remove('hide');
             header?.classList.remove('scrolled');
         }
 
@@ -43,7 +37,7 @@
     handleScroll();
 
     // ============================================
-    // SCROLL REVEAL (animações ao surgir)
+    // SCROLL REVEAL
     // ============================================
     const fadeElements = document.querySelectorAll('.fade-up');
     const ANIMATE_ONCE = true;
