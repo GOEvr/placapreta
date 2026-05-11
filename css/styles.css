@@ -30,7 +30,6 @@ body {
     color: var(--text-dark);
     scroll-behavior: smooth;
     overflow-x: hidden;
-    /* padding-top REMOVIDO - essencial para não cobrir conteúdo no mobile */
 }
 
 h1, h2, h3, .hero-title, .section-title, .card-title {
@@ -69,72 +68,23 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     100% { transform: scale(1); }
 }
 
-@keyframes headerFade {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 /* ============================================
-   TOP BAR - NORMAL (some ao rolar com JS)
-   ============================================ */
-.top-bar {
-    position: relative;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gold);
-    color: var(--primary-dark);
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.3s ease;
-    z-index: 1001;
-}
-
-/* Estado oculto - some ao rolar para baixo */
-.top-bar.hide {
-    transform: translateY(-100%);
-}
-
-/* ============================================
-   HEADER PREMIUM (position sticky)
+   HEADER PREMIUM (sem top bar)
    ============================================ */
 .header {
     position: sticky;
     top: 0;
     width: 100%;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    transition: 
-        height 0.35s cubic-bezier(0.2, 0.9, 0.4, 1),
-        background 0.3s ease,
-        box-shadow 0.3s ease;
-    z-index: 1000;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-/* ESTADO COMPACTO - quando rolar */
-.header.scrolled {
-    height: 80px;
     background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    z-index: 1000;
 }
 
-/* Efeito hover premium */
-.header:hover {
-    backdrop-filter: blur(12px);
+.header.scrolled {
+    background: rgba(15, 23, 42, 0.98);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .header .container {
@@ -143,7 +93,11 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    width: 100%;
+    padding: 20px 32px;
+}
+
+.header.scrolled .container {
+    padding: 12px 32px;
 }
 
 .logo-container {
@@ -153,21 +107,18 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
-/* LOGO COM ANIMAÇÃO SUAVE */
 .logo-img {
     height: 90px;
     width: auto;
-    transform: scale(1);
-    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1);
-    transform-origin: left center;
+    transition: transform 0.3s ease;
+}
+
+.header.scrolled .logo-img {
+    height: 70px;
 }
 
 .logo-img:hover {
     transform: scale(1.05);
-}
-
-.header.scrolled .logo-img {
-    transform: scale(0.7);
 }
 
 .logo-text {
@@ -181,18 +132,21 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
     letter-spacing: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .header.scrolled .logo-text .main {
-    transform: translateY(-2px);
+    font-size: 2.2rem;
 }
 
 .logo-text .sub {
-    font-size: 1.02rem;
+    font-size: 1rem;
     color: var(--gold);
     letter-spacing: 3px;
     font-weight: 600;
+}
+
+.header.scrolled .logo-text .sub {
+    font-size: 0.85rem;
 }
 
 .header-contact {
@@ -225,7 +179,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .whatsapp-btn {
     background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
     color: #fff;
-    padding: 14px 32px;
+    padding: 12px 28px;
     border-radius: 60px;
     text-decoration: none;
     font-weight: 700;
@@ -233,17 +187,13 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     align-items: center;
     gap: 10px;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 0.95rem;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-}
-
-.header.scrolled .whatsapp-btn {
-    transform: scale(0.95);
 }
 
 .cta-button {
@@ -298,17 +248,6 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
 }
 
-/* MOBILE: remove blur para melhor performance */
-@media (max-width: 768px) {
-    .header {
-        backdrop-filter: none;
-        background: rgba(15, 23, 42, 0.98);
-    }
-    .header:hover {
-        backdrop-filter: none;
-    }
-}
-
 /* ============================================
    HERO
    ============================================ */
@@ -321,7 +260,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 60px 0 60px;
+    padding: 80px 0 60px;
 }
 
 .hero::before {
@@ -668,6 +607,61 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
+   VÍDEOS DE DEPOIMENTOS
+   ============================================ */
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.2);
+    border-color: var(--gold);
+}
+
+.video-wrapper {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16/9;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.video-info h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 5px;
+}
+
+.video-info p {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* ============================================
    SOBRE
    ============================================ */
 .about-content {
@@ -911,7 +905,7 @@ footer .container {
     }
     
     .hero {
-        padding: 50px 0;
+        padding: 60px 0;
     }
 }
 
@@ -921,59 +915,48 @@ footer .container {
         padding: 0 20px;
     }
     
-    .top-bar {
-        height: auto;
-        min-height: 44px;
-        font-size: 0.65rem;
-        padding: 8px 12px;
-        line-height: 1.4;
-    }
-    
-    .header {
-        height: auto;
-        min-height: 80px;
-        position: sticky;
-        top: 0;
-    }
-    
-    .header.scrolled {
-        height: auto;
-        min-height: 65px;
-    }
-    
     .header .container {
         flex-direction: column;
-        gap: 8px;
-        padding: 12px 20px;
+        gap: 12px;
+        padding: 15px 20px;
+    }
+    
+    .header.scrolled .container {
+        padding: 10px 20px;
     }
     
     .logo-container {
-        gap: 8px;
+        gap: 10px;
     }
     
     .logo-img {
-        height: 45px;
+        height: 50px;
     }
     
     .header.scrolled .logo-img {
-        transform: scale(0.85);
+        height: 45px;
     }
     
     .logo-text .main {
-        font-size: 1.2rem;
-        letter-spacing: 1px;
+        font-size: 1.8rem;
+    }
+    
+    .header.scrolled .logo-text .main {
+        font-size: 1.4rem;
     }
     
     .logo-text .sub {
-        font-size: 0.55rem;
-        letter-spacing: 1.5px;
+        font-size: 0.7rem;
+    }
+    
+    .header.scrolled .logo-text .sub {
+        font-size: 0.6rem;
     }
     
     .header-contact {
         width: 100%;
         justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 12px;
     }
     
     .contact-info span {
@@ -985,12 +968,8 @@ footer .container {
         font-size: 0.8rem;
     }
     
-    .header.scrolled .whatsapp-btn {
-        transform: scale(0.95);
-    }
-    
     .hero {
-        padding: 40px 0;
+        padding: 50px 0;
     }
     
     .hero .container {
@@ -998,24 +977,24 @@ footer .container {
     }
     
     .hero-title {
-        font-size: 2.2rem;
-        margin-bottom: 16px;
-    }
-    
-    .hero-description {
-        font-size: 0.9rem;
+        font-size: 2.3rem;
         margin-bottom: 20px;
     }
     
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+    
     .hero-badge {
-        padding: 5px 16px;
+        padding: 6px 18px;
         font-size: 0.7rem;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
     
     .benefits-row {
-        gap: 8px;
-        margin: 20px 0;
+        gap: 10px;
+        margin: 25px 0;
     }
     
     .benefit-item {
@@ -1025,19 +1004,19 @@ footer .container {
     
     .rating {
         font-size: 0.8rem;
-        margin-top: 16px;
+        margin-top: 20px;
     }
     
     .cta-button {
-        padding: 12px 24px;
-        font-size: 0.95rem;
+        padding: 12px 28px;
+        font-size: 1rem;
     }
     
     .btn-wa-fixed {
-        bottom: 16px;
-        right: 16px;
-        padding: 10px 16px;
-        font-size: 0.75rem;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 0.8rem;
     }
     
     .section {
@@ -1050,63 +1029,92 @@ footer .container {
     
     .section-sub {
         font-size: 0.9rem;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
     }
     
     .cards-grid {
-        gap: 16px;
+        gap: 20px;
     }
     
     .card {
-        padding: 25px 16px;
+        padding: 30px 20px;
     }
     
     .card i {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     
     .card h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
     .steps {
-        gap: 16px;
+        gap: 20px;
         flex-direction: column;
     }
     
     .step {
-        padding: 24px 16px;
+        padding: 30px 20px;
     }
     
     .step-number {
-        width: 48px;
-        height: 48px;
-        font-size: 1.4rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+    
+    .step h3 {
+        font-size: 1.3rem;
+    }
+    
+    .gallery-swiper {
+        padding: 10px 0 40px;
+    }
+    
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 1rem;
+    }
+    
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .video-wrapper {
+        aspect-ratio: 16/9;
     }
     
     .testimonials {
-        gap: 16px;
+        gap: 20px;
         flex-direction: column;
         align-items: center;
     }
     
     .testimonial {
-        padding: 20px;
+        padding: 25px;
         max-width: 100%;
     }
     
     .about-features {
-        gap: 16px;
+        gap: 20px;
         flex-direction: column;
         align-items: center;
+        margin: 35px 0;
     }
     
     .final-cta {
-        padding: 40px 16px;
+        padding: 50px 20px;
     }
     
     .final-cta h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     .faq-grid {
@@ -1114,11 +1122,11 @@ footer .container {
     }
     
     .faq-item {
-        padding: 14px 18px;
+        padding: 16px 20px;
     }
     
     .faq-question {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
     
     footer {
@@ -1126,7 +1134,7 @@ footer .container {
     }
     
     .footer-logo {
-        height: 40px;
+        height: 45px;
     }
     
     .footer-wa a {
@@ -1166,7 +1174,7 @@ footer .container {
     }
     
     .card {
-        padding: 20px 12px;
+        padding: 25px 16px;
     }
     
     .card i {
@@ -1175,6 +1183,14 @@ footer .container {
     
     .card h3 {
         font-size: 1.2rem;
+    }
+    
+    .video-info h4 {
+        font-size: 1rem;
+    }
+    
+    .video-info p {
+        font-size: 0.75rem;
     }
     
     .whatsapp-btn {
@@ -1188,6 +1204,17 @@ footer .container {
     
     .contact-info {
         justify-content: center;
+    }
+}
+
+/* Mobile muito pequeno (375px) */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .final-cta .cta-button {
+        min-width: 90%;
     }
 }
 
