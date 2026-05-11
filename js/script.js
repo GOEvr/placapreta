@@ -1,22 +1,21 @@
 /**
- * Clássicos VR - Script Premium
- * Scroll com PONTO ÚNICO DE CONTROLE - SEM TREPIDAÇÃO
+ * Clássicos VR - Script Premium (sem tremor)
  */
 
 (function() {
     'use strict';
 
     // ============================================
-    // SCROLL COM PONTO ÚNICO DE CONTROLE
+    // SCROLL COM PONTO ÚNICO - SOMENTE COR E SOMBRA
     // ============================================
     const header = document.getElementById('header');
-
     let ticking = false;
-    const TRIGGER = 80;
+    const TRIGGER = 50; // Ponto mais suave
 
     function handleScroll() {
         const currentScroll = window.scrollY;
 
+        // SÓ adiciona/remove classe - sem mudar altura
         if (currentScroll > TRIGGER) {
             header?.classList.add('scrolled');
         } else {
