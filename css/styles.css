@@ -30,6 +30,7 @@ body {
     color: var(--text-dark);
     scroll-behavior: smooth;
     overflow-x: hidden;
+    padding-top: 100px; /* COMPENSAÇÃO DO HEADER FIXO - SEM TREMOR */
 }
 
 h1, h2, h3, .hero-title, .section-title, .card-title {
@@ -69,22 +70,26 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HEADER PREMIUM (sem top bar)
+   HEADER FIXO - SEM TREMOR (ALTURA CONSTANTE)
    ============================================ */
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
+    height: 100px; /* ALTURA FIXA - NUNCA MUDA */
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
 }
 
+/* AO ROLAR - SÓ MUDA COR E SOMBRA (ALTURA PERMANECE 100px) */
 .header.scrolled {
     background: rgba(15, 23, 42, 0.98);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(212, 175, 55, 0.4);
 }
 
 .header .container {
@@ -93,11 +98,8 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px 32px;
-}
-
-.header.scrolled .container {
-    padding: 12px 32px;
+    height: 100%;
+    padding: 0 32px;
 }
 
 .logo-container {
@@ -107,14 +109,16 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     text-decoration: none;
 }
 
+/* TAMANHO FIXO DA LOGO - SEM MUDANÇA AO ROLAR */
 .logo-img {
-    height: 90px;
+    height: 70px;
     width: auto;
     transition: transform 0.3s ease;
 }
 
+/* REMOVIDO O SCALE QUE CAUSA TREMOR */
 .header.scrolled .logo-img {
-    height: 70px;
+    height: 70px; /* MESMA ALTURA - SEM TREMOR */
 }
 
 .logo-img:hover {
@@ -127,24 +131,26 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 .logo-text .main {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
     letter-spacing: 2px;
 }
 
+/* TÍTULO FIXO - SEM MUDANÇA AO ROLAR */
 .header.scrolled .logo-text .main {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
 }
 
 .logo-text .sub {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: var(--gold);
     letter-spacing: 3px;
     font-weight: 600;
 }
 
+/* SUBTÍTULO FIXO - SEM MUDANÇA AO ROLAR */
 .header.scrolled .logo-text .sub {
     font-size: 0.85rem;
 }
@@ -194,6 +200,12 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 .whatsapp-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* BOTÃO FIXO - SEM MUDANÇA AO ROLAR */
+.header.scrolled .whatsapp-btn {
+    transform: scale(1);
+    padding: 12px 28px;
 }
 
 .cta-button {
@@ -249,7 +261,7 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
 }
 
 /* ============================================
-   HERO
+   HERO - COM SCROLL MARGIN PARA NÃO FICAR ATRÁS DO HEADER
    ============================================ */
 .hero {
     position: relative;
@@ -260,7 +272,8 @@ h1, h2, h3, .hero-title, .section-title, .card-title {
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 80px 0 60px;
+    padding: 60px 0 60px;
+    scroll-margin-top: 100px;
 }
 
 .hero::before {
@@ -891,7 +904,7 @@ footer .container {
 }
 
 /* ============================================
-   RESPONSIVE - MOBILE
+   RESPONSIVE - MOBILE (SEM TREMOR)
    ============================================ */
 
 /* Tablet (768px - 1024px) */
@@ -905,24 +918,33 @@ footer .container {
     }
     
     .hero {
-        padding: 60px 0;
+        padding: 50px 0;
     }
 }
 
 /* Mobile Grande (768px) */
 @media (max-width: 768px) {
+    body {
+        padding-top: 0; /* Remove padding-top no mobile */
+    }
+    
     .container {
         padding: 0 20px;
     }
     
-    .header .container {
-        flex-direction: column;
-        gap: 12px;
-        padding: 15px 20px;
+    /* Header mobile - sem tremor, altura auto */
+    .header {
+        position: sticky;
+        height: auto;
+        min-height: 80px;
+        background: rgba(15, 23, 42, 0.98);
     }
     
-    .header.scrolled .container {
-        padding: 10px 20px;
+    .header .container {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 20px;
+        height: auto;
     }
     
     .logo-container {
@@ -930,26 +952,14 @@ footer .container {
     }
     
     .logo-img {
-        height: 50px;
-    }
-    
-    .header.scrolled .logo-img {
         height: 45px;
     }
     
     .logo-text .main {
-        font-size: 1.8rem;
-    }
-    
-    .header.scrolled .logo-text .main {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .logo-text .sub {
-        font-size: 0.7rem;
-    }
-    
-    .header.scrolled .logo-text .sub {
         font-size: 0.6rem;
     }
     
@@ -969,7 +979,7 @@ footer .container {
     }
     
     .hero {
-        padding: 50px 0;
+        padding: 40px 0;
     }
     
     .hero .container {
